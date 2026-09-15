@@ -19,24 +19,53 @@
   color:var(--arvenaire-ivory) !important;
   text-decoration:none !important;
 }
-.brand-symbol-mask {
+
+/*
+ * The legacy pages contain selectors such as `.nav-logo span`,
+ * `.pl-logo span` and country-specific `*-nav-logo span` rules.
+ * Keep the approved master identity isolated from those older gradients
+ * and destination colours by explicitly resetting the generated children.
+ */
+.brand-lockup > .brand-symbol-mask,
+.brand-preloader > .brand-symbol-mask,
+.brand-reader-lockup > .brand-symbol-mask {
   display:inline-block;
   flex:0 0 auto;
   width:28px;
   height:28px;
-  background:currentColor;
-  -webkit-mask:url('../assets/brand/arvenaire-symbol.svg') center/contain no-repeat;
-  mask:url('../assets/brand/arvenaire-symbol.svg') center/contain no-repeat;
+  color:inherit !important;
+  background:currentColor !important;
+  background-image:none !important;
+  -webkit-text-fill-color:currentColor !important;
+  -webkit-background-clip:border-box !important;
+  background-clip:border-box !important;
+  -webkit-mask-image:url('../assets/brand/arvenaire-symbol.svg');
+  -webkit-mask-position:center;
+  -webkit-mask-repeat:no-repeat;
+  -webkit-mask-size:140%;
+  mask-image:url('../assets/brand/arvenaire-symbol.svg');
+  mask-position:center;
+  mask-repeat:no-repeat;
+  mask-size:140%;
   filter:drop-shadow(0 0 12px rgba(95,134,184,.12));
 }
-.brand-wordmark {
+
+.brand-lockup > .brand-wordmark,
+.brand-preloader > .brand-wordmark,
+.brand-reader-lockup > .brand-wordmark {
   font-family:'Inter','Helvetica Neue',Arial,sans-serif;
   font-size:14px;
   font-weight:400;
   letter-spacing:.28em;
   line-height:1;
   white-space:nowrap;
-  color:currentColor;
+  color:inherit !important;
+  background:none !important;
+  background-image:none !important;
+  -webkit-background-clip:border-box !important;
+  background-clip:border-box !important;
+  -webkit-text-fill-color:currentColor !important;
+  text-shadow:none;
 }
 
 .pl-logo.brand-preloader,
@@ -49,12 +78,12 @@
   line-height:1;
   color:var(--arvenaire-ivory) !important;
 }
-.brand-preloader .brand-symbol-mask {
+.brand-preloader > .brand-symbol-mask {
   width:72px;
   height:72px;
   filter:drop-shadow(0 0 22px rgba(95,134,184,.2));
 }
-.brand-preloader .brand-wordmark {
+.brand-preloader > .brand-wordmark {
   font-size:clamp(18px,3vw,28px);
   letter-spacing:.34em;
 }
@@ -65,10 +94,17 @@
   gap:8px;
   color:var(--arvenaire-navy) !important;
 }
-.brand-reader-lockup .brand-symbol-mask { width:24px;height:24px;filter:none; }
-.brand-reader-lockup .brand-wordmark { font-size:12px;letter-spacing:.24em; }
+.brand-reader-lockup > .brand-symbol-mask {
+  width:24px;
+  height:24px;
+  filter:none;
+}
+.brand-reader-lockup > .brand-wordmark {
+  font-size:12px;
+  letter-spacing:.24em;
+}
 
 @media (max-width:700px) {
-  .brand-symbol-mask { width:25px;height:25px; }
-  .brand-wordmark { font-size:12px;letter-spacing:.22em; }
+  .brand-lockup > .brand-symbol-mask { width:25px;height:25px; }
+  .brand-lockup > .brand-wordmark { font-size:12px;letter-spacing:.22em; }
 }

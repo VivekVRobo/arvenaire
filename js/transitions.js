@@ -3,6 +3,15 @@
  * Prevents sudden jumps when navigating between pages.
  */
 (function() {
+  // Load the centralized approved brand identity runtime once.
+  if (!document.querySelector('script[data-arvenaire-brand-runtime]')) {
+    const brandScript = document.createElement('script');
+    brandScript.src = 'js/brand-runtime.js';
+    brandScript.async = false;
+    brandScript.dataset.arvenaireBrandRuntime = 'v1';
+    document.head.appendChild(brandScript);
+  }
+
   // Create overlay on DOMContentLoaded or immediately if body is ready
   function initOverlay() {
     if (document.querySelector('.page-transition-overlay')) return;

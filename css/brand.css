@@ -1,0 +1,74 @@
+/* ARVENAIRE v1.0 brand runtime integration */
+:root {
+  --arvenaire-navy: #0B2444;
+  --arvenaire-ivory: #F6F3EC;
+  --arvenaire-sapphire: #5F86B8;
+  --arvenaire-sapphire-deep: #294C73;
+  --arvenaire-black: #05070A;
+}
+
+.nav-logo.brand-lockup,
+.jp-nav-logo.brand-lockup,
+.kr-nav-logo.brand-lockup,
+.de-nav-logo.brand-lockup {
+  display:inline-flex !important;
+  align-items:center !important;
+  gap:10px !important;
+  line-height:1 !important;
+  min-width:max-content;
+  color:var(--arvenaire-ivory) !important;
+  text-decoration:none !important;
+}
+.brand-symbol-mask {
+  display:inline-block;
+  flex:0 0 auto;
+  width:28px;
+  height:28px;
+  background:currentColor;
+  -webkit-mask:url('../assets/brand/arvenaire-symbol.svg') center/contain no-repeat;
+  mask:url('../assets/brand/arvenaire-symbol.svg') center/contain no-repeat;
+  filter:drop-shadow(0 0 12px rgba(95,134,184,.12));
+}
+.brand-wordmark {
+  font-family:'Inter','Helvetica Neue',Arial,sans-serif;
+  font-size:14px;
+  font-weight:400;
+  letter-spacing:.28em;
+  line-height:1;
+  white-space:nowrap;
+  color:currentColor;
+}
+
+.pl-logo.brand-preloader,
+.preloader-logo.brand-preloader {
+  display:flex !important;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  line-height:1;
+  color:var(--arvenaire-ivory) !important;
+}
+.brand-preloader .brand-symbol-mask {
+  width:72px;
+  height:72px;
+  filter:drop-shadow(0 0 22px rgba(95,134,184,.2));
+}
+.brand-preloader .brand-wordmark {
+  font-size:clamp(18px,3vw,28px);
+  letter-spacing:.34em;
+}
+
+.ro-logo.brand-reader-lockup {
+  display:inline-flex !important;
+  align-items:center;
+  gap:8px;
+  color:var(--arvenaire-navy) !important;
+}
+.brand-reader-lockup .brand-symbol-mask { width:24px;height:24px;filter:none; }
+.brand-reader-lockup .brand-wordmark { font-size:12px;letter-spacing:.24em; }
+
+@media (max-width:700px) {
+  .brand-symbol-mask { width:25px;height:25px; }
+  .brand-wordmark { font-size:12px;letter-spacing:.22em; }
+}

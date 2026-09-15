@@ -197,9 +197,14 @@
   line-height: 1.12;
 }
 
-.jp-transition-inner p,
+.jp-transition-inner p {
+  font-size: 0 !important;
+}
+
 .cs-final-cta .cs-lead {
   font-size: 0 !important;
+  text-align: center !important;
+  margin: 0 auto 2.5rem auto !important;
 }
 
 .jp-transition-inner p::after {
@@ -215,6 +220,8 @@
   min-height: 5.1em;
   font-size: 1rem !important;
   line-height: 1.7 !important;
+  text-align: center !important;
+  margin: 0 auto !important;
 }
 
 .cs-final-cta .cs-btn-primary {

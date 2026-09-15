@@ -776,6 +776,7 @@ body {
     pointer-events: none;
 }
 .cs-cta-title { max-width: 600px; margin: 0 auto 1rem; }
+.cs-final-cta .cs-lead { text-align: center !important; margin: 0 auto 2.5rem auto !important; }
 .cs-cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin: 2.5rem 0 2rem; }
 .cs-btn-primary {
     padding: 1rem 2.5rem; background: var(--accent); color: #fff;

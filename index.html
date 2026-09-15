@@ -262,26 +262,6 @@ html,body{
   box-shadow:0 6px 18px rgba(255,209,102,0.35);
 }
 
-/* ─── SCROLL HINT ─── */
-#scroll-hint{
-  position:fixed;bottom:14px;left:50%;transform:translateX(-50%);
-  z-index:200;display:flex;flex-direction:column;align-items:center;gap:6px;
-  opacity:0;transition:opacity .6s;
-  pointer-events:none;
-}
-#scroll-hint.show{opacity:1;}
-.sh-text{font-size:.68rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.65);}
-.sh-wheel{
-  width:20px;height:30px;border:2px solid rgba(255,255,255,.25);border-radius:99px;
-  position:relative;
-}
-.sh-dot{
-  width:4px;height:7px;background:rgba(255,255,255,.6);border-radius:99px;
-  position:absolute;top:4px;left:50%;transform:translateX(-50%);
-  animation:wheelAnim 1.6s ease-in-out infinite;
-}
-@keyframes wheelAnim{0%{top:4px;opacity:1;}100%{top:16px;opacity:0;}}
-
 /* ─── CINEMATIC PAGE TRANSITION OVERLAY ─── */
 .page-transition-overlay {
   position: fixed;
@@ -552,7 +532,6 @@ html,body{
 <div id="intro">
   <div class="intro-badge">GLOBAL ENGINEERING ADVISORY</div>
   <h1 class="intro-title">Direct Pathways to<br><span class="intro-grad">Global Engineering.</span></h1>
-  <p class="intro-sub">Strategic guidance for Indian engineers pursuing admissions, fully-funded scholarships, and industrial careers in Germany, Japan, and South Korea.</p>
   
   <div class="country-cards">
     <div class="country-card country-btn" data-c="germany" onclick="startCountryDive('germany', 'germany.html')">
@@ -633,12 +612,6 @@ html,body{
     <a href="contact.html" class="nav-cta">Contact Advisory</a>
   </div>
 </nav>
-
-<!-- SCROLL HINT -->
-<div id="scroll-hint">
-  <span class="sh-text">Explore Pathways</span>
-  <div class="sh-wheel"><div class="sh-dot"></div></div>
-</div>
 
 <!-- INFO PANEL -->
 <div id="info-panel">
@@ -1068,13 +1041,10 @@ html,body{
 
     // UI Visibility
     const intro = document.getElementById('intro');
-    const scrollHint = document.getElementById('scroll-hint');
     if(p > 0.05 && p < 0.95) {
       intro.classList.add('hidden');
-      scrollHint.classList.remove('show');
     } else {
       intro.classList.remove('hidden');
-      if (p <= 0.05) scrollHint.classList.add('show');
     }
 
     // Update Info Panel content halfway through the segment

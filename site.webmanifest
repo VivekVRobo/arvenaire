@@ -1,0 +1,13 @@
+{
+  "name": "Arvenaire",
+  "short_name": "Arvenaire",
+  "description": "Global engineering pathways for study, scholarships, careers and international mobility.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#05070A",
+  "theme_color": "#05070A",
+  "icons": [
+    {"src": "assets/icons/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable"}
+  ]
+}

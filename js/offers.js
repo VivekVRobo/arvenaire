@@ -69,14 +69,5 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // Replace speculative value/savings claims with concrete deliverable value.
-  const valueBox = document.querySelector('.price-value-callout .pvc-text');
-  if (valueBox) {
-    const heading = valueBox.querySelector('h4');
-    const paragraph = valueBox.querySelector('p');
-    if (heading) heading.textContent = 'What ₹499 actually buys';
-    if (paragraph) {
-      paragraph.innerHTML = 'A reusable engineering-application execution pack: two editable CV files, 30 reviewed employer portals, outreach scripts, four portfolio blueprints, four technical README templates, an official-source checklist, a CV bullet bank, German job-search terms, and a 14-day sprint. <strong>No admission, job, salary, scholarship, or visa outcome is guaranteed.</strong>';
-    }
-  }
 });
+

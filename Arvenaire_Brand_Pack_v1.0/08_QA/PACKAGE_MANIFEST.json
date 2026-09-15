@@ -1,0 +1,20 @@
+{
+  "brand": "Arvenaire",
+  "version": "1.0",
+  "identity_status": "approved",
+  "master_geometry": "01_MASTER_LOGO/Vector/arvenaire-master-symbol-navy.svg",
+  "premium_reference": "07_APPROVED_REFERENCE_IMAGES/Logo/arvenaire-premium-master-approved.png",
+  "file_count_excluding_this_manifest_and_checksum": 77,
+  "sections": [
+    "00_START_HERE",
+    "01_MASTER_LOGO",
+    "02_WORDMARK",
+    "03_FAVICON_APP_ICONS",
+    "04_BANNERS",
+    "05_BRAND_GUIDELINES",
+    "06_WEB_READY",
+    "07_APPROVED_REFERENCE_IMAGES",
+    "08_QA"
+  ],
+  "qa_report": "08_QA/QA_REPORT.md"
+}

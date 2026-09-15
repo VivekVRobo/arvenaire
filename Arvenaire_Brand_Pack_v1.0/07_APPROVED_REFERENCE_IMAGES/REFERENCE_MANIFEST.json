@@ -1,0 +1,111 @@
+{
+  "brand": "Arvenaire",
+  "version": "1.0",
+  "references": [
+    {
+      "path": "07_APPROVED_REFERENCE_IMAGES/App_Icons/arvenaire-app-icon-dark-approved.png",
+      "sha256": "2847e7f06f7259c245fcc6ecfe20e44a6a3bdf4ac7a19da521bb3e3ecc8b8d62",
+      "bytes": 37418,
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "mode": "RGBA"
+    },
+    {
+      "path": "07_APPROVED_REFERENCE_IMAGES/App_Icons/arvenaire-app-icon-light-approved.png",
+      "sha256": "cb27e8b9a81aec807e457e6e02900465d46feb1ad09e3031bdf852cf4e2d3d77",
+      "bytes": 37401,
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "mode": "RGBA"
+    },
+    {
+      "path": "07_APPROVED_REFERENCE_IMAGES/App_Icons/arvenaire-app-icon-premium-approved.png",
+      "sha256": "7a9dc66044b7eaee878cb55f9c3109c069f447b2ad65b5dc38ec6c63d10e2b19",
+      "bytes": 575732,
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "mode": "RGBA"
+    },
+    {
+      "path": "07_APPROVED_REFERENCE_IMAGES/App_Icons/arvenaire-app-icon-sapphire-approved.png",
+      "sha256": "fda002b268407299b8d19800f9c4ca047a6f09ba5ac83f444c811f0a5756a44b",
+      "bytes": 37800,
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "mode": "RGBA"
+    },
+    {
+      "path": "07_APPROVED_REFERENCE_IMAGES/Banner/arvenaire-banner-approved.png",
+      "sha256": "f772b2e0bf5ca61f7217c7b29580745f6714a33bb43003ae8910ff250df1c257",
+      "bytes": 348492,
+      "dimensions": [
+        1672,
+        941
+      ],
+      "mode": "RGB"
+    },
+    {
+      "path": "07_APPROVED_REFERENCE_IMAGES/Identity_Boards/arvenaire-brand-system-board-approved.png",
+      "sha256": "a8d76025ce2da871bb0c7fb262bc88cb3ada376dc23c20eddc33f4ab5f30f56d",
+      "bytes": 564008,
+      "dimensions": [
+        2000,
+        1500
+      ],
+      "mode": "RGB"
+    },
+    {
+      "path": "07_APPROVED_REFERENCE_IMAGES/Identity_Boards/arvenaire-wordmark-identity-board-approved.png",
+      "sha256": "81272e6e58441d471dbc1b3ed0fbe8b787a7b385dd397572c7746d0291fae1f9",
+      "bytes": 84436,
+      "dimensions": [
+        1800,
+        1200
+      ],
+      "mode": "RGB"
+    },
+    {
+      "path": "07_APPROVED_REFERENCE_IMAGES/Identity_Boards/arvenaire-wordmark-pairing-concept-reference.png",
+      "sha256": "9c14f59a2639860d3cf49c763d033cd64b7949ff1ae69dcdb1205a3d7ebc7187",
+      "bytes": 1309596,
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "mode": "RGB"
+    },
+    {
+      "path": "07_APPROVED_REFERENCE_IMAGES/Logo/arvenaire-flat-symbol-navy-on-ivory-reference.png",
+      "sha256": "8ff4a304cbb701ca1b3d02cfe03cfafabef156ec8686455cc3d60d07d7c2062d",
+      "bytes": 834354,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGB"
+    },
+    {
+      "path": "07_APPROVED_REFERENCE_IMAGES/Logo/arvenaire-premium-master-approved.png",
+      "sha256": "b9bf18af732a9f18d7e0090d49e837be48ef95669c2f5c969d294709149ad9d0",
+      "bytes": 1073121,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGB"
+    },
+    {
+      "path": "07_APPROVED_REFERENCE_IMAGES/README.md",
+      "sha256": "22f921d315ee5ec90957634c910487c3bffd5ccf857e338a7f0b0e11d26b1d07",
+      "bytes": 558
+    }
+  ]
+}

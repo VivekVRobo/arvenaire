@@ -6,3 +6,4 @@
 # Local/editor artifacts
 .DS_Store
 Thumbs.db
+tmp/

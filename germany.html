@@ -347,7 +347,7 @@ a { text-decoration: none; color: inherit; }
   content: '';
   position: absolute;
   inset: -60px -80px;
-  background: radial-gradient(ellipse at center, rgba(0,0,10,0.72) 0%, rgba(0,0,10,0.45) 45%, transparent 75%);
+  background: radial-gradient(ellipse at center, rgba(0,0,10,0.85) 0%, rgba(0,0,10,0.6) 55%, transparent 80%);
   border-radius: 50%;
   z-index: -1;
   pointer-events: none;
@@ -356,7 +356,7 @@ a { text-decoration: none; color: inherit; }
 /* Eyebrow — thin rule + Japanese character */
 .de-hero-eyebrow {
   font-size: 0.66rem; letter-spacing: 8px; text-transform: uppercase;
-  color: rgba(255, 209, 102, 0.8); margin-bottom: 32px;
+  color: rgba(255, 209, 102, 0.9); margin-bottom: 32px;
   display: flex; align-items: center; justify-content: center; gap: 16px;
 }
 .de-hero-eyebrow::before,
@@ -377,38 +377,41 @@ a { text-decoration: none; color: inherit; }
   display: block;
   color: #ffffff;
   text-shadow:
-    0 2px 4px rgba(0,0,0,0.95),
-    0 4px 24px rgba(0,0,0,0.85),
-    0 0 80px rgba(255,60,30,0.2);
+    0 2px 6px rgba(0,0,0,0.98),
+    0 6px 28px rgba(0,0,0,0.95);
 }
 .de-title .t2 {
   display: block;
-  background: linear-gradient(135deg, #D4A017 0%, #FFD166 55%, #FF6B35 100%);
+  color: #FFD166;
+  background: linear-gradient(135deg, #FFF1C5 0%, #FFD166 45%, #E5A817 100%);
   background-size: 220%;
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  filter: drop-shadow(0 4px 18px rgba(0,0,0,0.9));
   animation: shimmerText 4s linear infinite;
 }
 .de-title .t3 {
   display: block;
-  font-family: 'Playfair Display', serif;
-  font-size: 0.28em;
-  font-weight: 400;
-  letter-spacing: 14px;
-  color: rgba(255,255,255,0.25);
+  font-family: 'Cinzel', serif;
+  font-size: 0.32em;
+  font-weight: 700;
+  letter-spacing: 12px;
+  color: #FFFFFF;
   margin-top: 18px;
-  -webkit-text-fill-color: rgba(255,255,255,0.25);
+  -webkit-text-fill-color: #FFFFFF;
+  text-transform: uppercase;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.95);
 }
 
 /* Italic storytelling sub */
 .de-sub {
-  font-size: clamp(0.88rem, 1.4vw, 1.05rem);
+  font-size: clamp(0.92rem, 1.4vw, 1.1rem);
   font-style: italic;
-  color: rgba(255,255,255,0.75);
-  letter-spacing: 1px;
+  color: rgba(255,255,255,0.92);
+  letter-spacing: 0.5px;
   line-height: 1.8;
   margin-bottom: 52px;
   font-family: 'Inter', sans-serif;
-  text-shadow: 0 1px 8px rgba(0,0,0,0.9);
+  text-shadow: 0 2px 14px rgba(0,0,0,0.95);
 }
 
 /* Scroll cue */
@@ -1199,9 +1202,9 @@ a { text-decoration: none; color: inherit; }
   <!-- ── GERMANY TRANSITION & ADVISORY HUB ──────────────────────────── -->
   <section class="monetization-section" id="transition-hub">
     <div class="monetization-header">
-      <span class="monetization-eyebrow">Execution Kits & Advisory</span>
-      <h2>Germany Transition &amp; Advisory Hub</h2>
-      <p>Transform your engineering profile with editable action templates or book a 1-on-1 strategy session to build your personalized DAAD, university, and Werkstudent roadmap.</p>
+      <span class="monetization-eyebrow">Execution Kits &amp; Advisory</span>
+      <h2>Germany Engineering Action Products</h2>
+      <p>Direct execution templates and strategic advisory to fast-track admissions, visa preparation, and industrial hiring.</p>
     </div>
     
     <div class="monetization-grid">
@@ -1209,27 +1212,25 @@ a { text-decoration: none; color: inherit; }
       <div class="offer-card">
         <div class="offer-head">
           <div class="offer-type">Self-Service Execution</div>
-          <h3 class="offer-title">Germany Automation &amp; Robotics Transition Kit (2026)</h3>
+          <h3 class="offer-title">Germany Transition Pack (2026)</h3>
           <div class="offer-price-wrap">
             <span class="offer-price">₹499</span>
             <span class="offer-original-price">₹1,499</span>
-            <span class="offer-price-sub">one-time</span>
+            <span class="offer-price-sub">one-time download</span>
           </div>
-          <p class="offer-desc">Editable, copy-ready files designed to eliminate the blank-page problem for Indian engineering applicants.</p>
         </div>
         
         <ul class="offer-features">
-          <li>German ATS CV template pack (blank + filled engineering sample)</li>
-          <li>30-Company Germany spreadsheet with role keywords &amp; portal links</li>
-          <li>5 copy-paste LinkedIn outreach scripts for managers &amp; recruiters</li>
-          <li>3 portfolio project blueprints (TwinCAT, ROS2, embedded systems)</li>
-          <li>APS, blocked account, visa, and Werkstudent checklist</li>
-          <li>30 CV bullet rewrites &amp; 14-day application sprint plan</li>
+          <li><strong>German ATS CV Pack</strong> · Blank &amp; filled engineering samples</li>
+          <li><strong>30-Company Database</strong> · Direct portals &amp; role keyword filters</li>
+          <li><strong>Outreach Script Vault</strong> · 5 recruiter &amp; manager cold templates</li>
+          <li><strong>4 Project Blueprints</strong> · ROS2, TwinCAT &amp; embedded architectures</li>
+          <li><strong>14-Day Sprint Guide</strong> · Step-by-step checklist &amp; CV bullet bank</li>
         </ul>
         
         <div>
           <a href="https://topmate.io/vivekvrobo/2291780" data-offer-link="kit" data-offer-location="germany_page_hub" class="btn-offer btn-offer-secondary" target="_blank" rel="noopener">Get the Transition Kit (₹499) →</a>
-          <p class="offer-footer-note">Instant digital download · Personal use license</p>
+          <p class="offer-footer-note">Instant digital download · Personal engineering license</p>
         </div>
       </div>
 
@@ -1237,41 +1238,35 @@ a { text-decoration: none; color: inherit; }
       <div class="offer-card featured">
         <div class="offer-card-badge">RECOMMENDED</div>
         <div class="offer-head">
-          <div class="offer-type">1-on-1 Advisory</div>
-          <h3 class="offer-title">Germany Engineering Strategy Session</h3>
+          <div class="offer-type">1-on-1 Strategic Advisory</div>
+          <h3 class="offer-title">Engineering Strategy Session</h3>
           <div class="offer-price-wrap">
             <span class="offer-price">₹2,499</span>
-            <span class="offer-price-sub">/ 120 min session</span>
+            <span class="offer-price-sub">/ 120-min private session</span>
           </div>
-          <p class="offer-desc">120-minute 1-on-1 video strategy session to review your profile, university shortlist, and job positioning.</p>
         </div>
 
         <div class="bonus-box">
           <span>🎁</span>
-          <strong>BONUS INCLUDED: Includes the complete ₹499 Transition Kit automatically!</strong>
+          <strong>Bonus: Full ₹499 Transition Pack included automatically</strong>
         </div>
 
         <ul class="offer-features">
-          <li>120-minute live 1-on-1 video session with Vivek Vala</li>
-          <li>In-depth profile analysis &amp; university match evaluation</li>
-          <li>SOP &amp; CV positioning strategy tailored to German standards</li>
-          <li>Portfolio gap analysis for automation, robotics &amp; embedded roles</li>
-          <li>Werkstudent &amp; cold outreach action roadmap</li>
-          <li><strong>Complete ₹499 Transition Kit included free</strong></li>
+          <li><strong>120-Min Private Deep Dive</strong> · Live video session with Vivek Vala</li>
+          <li><strong>Profile &amp; Shortlist Audit</strong> · University match &amp; DAAD readiness</li>
+          <li><strong>SOP &amp; CV Positioning</strong> · Tailored to German evaluation standards</li>
+          <li><strong>Portfolio Gap Analysis</strong> · Robotics, automation &amp; embedded roles</li>
+          <li><strong>Werkstudent Roadmap</strong> · Targeted cold outreach &amp; interview prep</li>
         </ul>
 
         <div>
           <a href="https://topmate.io/vivekvrobo/2291828" data-offer-link="session" data-offer-location="germany_page_hub" class="btn-offer btn-offer-primary" target="_blank" rel="noopener">Book Strategy Session (₹2,499) →</a>
           <p class="offer-footer-note">Instant 1-on-1 booking via Topmate · 120 minutes</p>
         </div>
-    <!-- Value Perspective Callout -->
-    <div class="price-value-callout">
-      <div class="pvc-icon">☕</div>
-      <div class="pvc-text">
-        <h4>Why ₹499? Value in Perspective</h4>
-        <p>₹499 is less than the cost of a single pizza or two coffees. For an engineering transition worth <strong>₹10 Lakhs – ₹20 Lakhs</strong> in tuition-free German education and Werkstudent salaries, ₹499 is a micro-investment that saves you 40+ hours of formatting, blank-page stress, and research.</p>
       </div>
     </div>
+
+    <p class="monetization-guarantee-note">ARVENAIRE provides independent planning support and execution templates. No university admission, job offer, salary, scholarship, or visa outcome is guaranteed.</p>
   </section>
 
   <!-- ── TESTIMONIALS ───────────────────────── -->

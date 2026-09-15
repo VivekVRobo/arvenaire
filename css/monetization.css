@@ -1,290 +1,291 @@
 /* ─── ARVENAIRE MONETIZATION & OFFER STYLES ─── */
 
 .monetization-section {
-  padding: 80px 20px;
-  background: radial-gradient(circle at 50% 0%, rgba(255, 209, 102, 0.08) 0%, rgba(10, 10, 18, 0.98) 70%);
+  padding: 24px 20px 18px;
+  background: radial-gradient(ellipse 75% 55% at 50% 25%, rgba(255, 209, 102, 0.035), transparent 70%), #08090D !important;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  color: #fff !important;
+  scroll-margin-top: 70px;
 }
 
 .monetization-header {
   text-align: center;
-  max-width: 780px;
-  margin: 0 auto 50px auto;
+  max-width: 680px;
+  margin: 0 auto 16px auto;
 }
 
 .monetization-eyebrow {
-  display: inline-block;
-  font-size: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.62rem;
   font-weight: 700;
-  letter-spacing: 3px;
+  letter-spacing: 2.4px;
   text-transform: uppercase;
   color: #FFD166;
-  background: rgba(255, 209, 102, 0.1);
-  padding: 6px 16px;
+  background: rgba(255, 209, 102, 0.08);
+  padding: 3px 12px;
   border-radius: 99px;
-  border: 1px solid rgba(255, 209, 102, 0.25);
-  margin-bottom: 16px;
+  border: 1px solid rgba(255, 209, 102, 0.22);
+  margin-bottom: 8px;
 }
 
 .monetization-header h2 {
-  font-family: 'Outfit', sans-serif;
-  font-size: clamp(2rem, 4vw, 3.2rem);
-  font-weight: 900;
-  color: #fff;
-  letter-spacing: -1px;
-  margin-bottom: 14px;
-  line-height: 1.15;
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.4rem, 2.1vw, 1.85rem);
+  font-weight: 700;
+  color: #FFFFFF !important;
+  letter-spacing: -0.3px;
+  margin-bottom: 5px;
+  line-height: 1.18;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.8);
 }
 
 .monetization-header p {
-  color: rgba(255, 255, 255, 0.75);
-  font-size: 1.05rem;
-  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.75) !important;
+  font-size: 0.82rem;
+  line-height: 1.4;
+  max-width: 540px;
+  margin: 0 auto;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.7);
 }
 
 .monetization-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 30px;
-  max-width: 1060px;
+  grid-template-columns: repeat(2, minmax(0, 460px));
+  gap: 20px;
+  max-width: 960px;
   margin: 0 auto;
   align-items: stretch;
+  justify-content: center;
+}
+
+@media (max-width: 820px) {
+  .monetization-grid {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+    gap: 18px;
+  }
 }
 
 .offer-card {
-  background: rgba(18, 18, 28, 0.85);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 20px;
-  padding: 36px 28px;
+  background: rgba(14, 16, 24, 0.82) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 20px 22px 18px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   position: relative;
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-  backdrop-filter: blur(12px);
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  color: #fff !important;
 }
 
 .offer-card:hover {
-  transform: translateY(-6px);
-  border-color: rgba(255, 209, 102, 0.4);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  transform: translateY(-3px);
+  border-color: rgba(255, 209, 102, 0.35);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 209, 102, 0.06);
 }
 
 .offer-card.featured {
-  background: linear-gradient(145deg, rgba(28, 26, 42, 0.95), rgba(15, 14, 26, 0.98));
-  border: 2px solid #FFD166;
-  box-shadow: 0 12px 35px rgba(255, 209, 102, 0.15);
+  background: linear-gradient(165deg, rgba(22, 22, 34, 0.92) 0%, rgba(12, 13, 20, 0.95) 100%) !important;
+  border: 1.5px solid rgba(255, 209, 102, 0.55);
+  box-shadow: 0 18px 38px rgba(0, 0, 0, 0.55), 0 0 28px rgba(255, 209, 102, 0.08), inset 0 1px 0 rgba(255, 209, 102, 0.2);
+}
+
+.offer-card.featured:hover {
+  border-color: rgba(255, 209, 102, 0.85);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.65), 0 0 36px rgba(255, 209, 102, 0.16);
 }
 
 .offer-card-badge {
   position: absolute;
-  top: -14px;
-  right: 24px;
-  background: linear-gradient(135deg, #FFD166, #D4AF37);
-  color: #000;
-  font-size: 0.7rem;
-  font-weight: 900;
-  letter-spacing: 1.5px;
+  top: -10px;
+  right: 20px;
+  background: linear-gradient(135deg, #FFD166 0%, #D4AF37 100%);
+  color: #08090D;
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 1.2px;
   text-transform: uppercase;
-  padding: 5px 14px;
+  padding: 3px 11px;
   border-radius: 99px;
-  box-shadow: 0 4px 12px rgba(255, 209, 102, 0.3);
+  box-shadow: 0 4px 12px rgba(255, 209, 102, 0.35);
 }
 
 .offer-head {
-  margin-bottom: 24px;
+  margin-bottom: 12px;
 }
 
 .offer-type {
-  font-size: 0.8rem;
+  font-size: 0.65rem;
   font-weight: 700;
-  letter-spacing: 2px;
+  letter-spacing: 1.8px;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.5);
-  margin-bottom: 8px;
+  color: #FFD166;
+  margin-bottom: 3px;
 }
 
 .offer-title {
-  font-family: 'Outfit', sans-serif;
-  font-size: 1.6rem;
-  font-weight: 800;
-  color: #fff;
-  line-height: 1.25;
-  margin-bottom: 12px;
+  font-family: 'Cinzel', serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #FFFFFF !important;
+  line-height: 1.22;
+  margin-bottom: 8px;
+  letter-spacing: -0.2px;
 }
 
 .offer-price-wrap {
   display: flex;
   align-items: baseline;
-  gap: 10px;
-  margin-bottom: 16px;
+  gap: 8px;
+  margin-bottom: 2px;
 }
 
 .offer-price {
   font-family: 'Outfit', sans-serif;
-  font-size: 2.5rem;
+  font-size: 1.85rem;
   font-weight: 900;
-  color: #FFD166;
+  color: #FFD166 !important;
   line-height: 1;
+  letter-spacing: -0.4px;
 }
 
 .offer-original-price {
-  font-size: 1.1rem;
-  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.4) !important;
   text-decoration: line-through;
+  font-weight: 500;
 }
 
 .offer-price-sub {
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.6);
-}
-
-.offer-desc {
-  font-size: 0.95rem;
-  color: rgba(255, 255, 255, 0.8);
-  line-height: 1.55;
-  margin-bottom: 24px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.74rem;
+  color: rgba(255, 255, 255, 0.65) !important;
+  font-weight: 500;
 }
 
 .bonus-box {
-  background: rgba(255, 209, 102, 0.08);
-  border: 1px dashed rgba(255, 209, 102, 0.35);
-  border-radius: 12px;
-  padding: 12px 16px;
-  margin-bottom: 24px;
+  background: rgba(255, 209, 102, 0.07);
+  border: 1px solid rgba(255, 209, 102, 0.28);
+  border-radius: 7px;
+  padding: 5px 10px;
+  margin-bottom: 12px;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 7px;
 }
 
 .bonus-box span {
-  font-size: 1.2rem;
+  font-size: 0.85rem;
 }
 
 .bonus-box strong {
-  font-size: 0.88rem;
+  font-size: 0.72rem;
   color: #FFD166;
-  font-weight: 700;
+  font-weight: 600;
+  line-height: 1.25;
 }
 
 .offer-features {
   list-style: none;
   padding: 0;
-  margin: 0 0 32px 0;
+  margin: 0 0 16px 0;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
 }
 
 .offer-features li {
-  font-size: 0.92rem;
-  color: rgba(255, 255, 255, 0.88);
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  line-height: 1.45;
+  font-size: 0.81rem;
+  color: rgba(255, 255, 255, 0.78) !important;
+  line-height: 1.4;
+  position: relative;
+  padding-left: 18px;
+}
+
+.offer-features li strong {
+  color: #FFFFFF !important;
+  font-weight: 600;
 }
 
 .offer-features li::before {
-  content: "✓";
+  content: "✦";
+  position: absolute;
+  left: 0;
+  top: 1px;
   color: #FFD166;
-  font-weight: 900;
-  font-size: 1rem;
-  flex-shrink: 0;
+  font-size: 0.72rem;
 }
 
 .btn-offer {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 8px;
   width: 100%;
-  padding: 16px 24px;
-  border-radius: 12px;
+  padding: 10px 18px;
+  border-radius: 9px;
   font-family: 'Inter', sans-serif;
-  font-size: 1rem;
+  font-size: 0.84rem;
   font-weight: 700;
   text-decoration: none;
   transition: all 0.25s ease;
   cursor: pointer;
   border: none;
+  letter-spacing: 0.2px;
 }
 
 .btn-offer-primary {
   background: linear-gradient(135deg, #FFD166 0%, #D4AF37 100%);
-  color: #0A0A12;
-  box-shadow: 0 6px 20px rgba(255, 209, 102, 0.3);
+  color: #08090D !important;
+  box-shadow: 0 5px 18px rgba(255, 209, 102, 0.26);
+  font-weight: 800;
 }
 
 .btn-offer-primary:hover {
   background: linear-gradient(135deg, #FFE08A 0%, #E5C158 100%);
   transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(255, 209, 102, 0.45);
+  box-shadow: 0 7px 22px rgba(255, 209, 102, 0.38);
 }
 
 .btn-offer-secondary {
-  background: rgba(255, 255, 255, 0.08);
-  color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff !important;
+  border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 .btn-offer-secondary:hover {
-  background: rgba(255, 255, 255, 0.16);
-  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 209, 102, 0.45);
   transform: translateY(-2px);
 }
 
 .offer-footer-note {
-  font-size: 0.78rem;
-  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.45) !important;
   text-align: center;
-  margin-top: 14px;
+  margin-top: 6px;
 }
 
-/* ─── VALUE PERSPECTIVE CALLOUT ─── */
-
-.price-value-callout {
+.monetization-guarantee-note {
   max-width: 860px;
-  margin: 40px auto 0 auto;
-  background: linear-gradient(135deg, rgba(255, 209, 102, 0.08) 0%, rgba(20, 20, 32, 0.9) 100%);
-  border: 1px solid rgba(255, 209, 102, 0.3);
-  border-radius: 16px;
-  padding: 24px 28px;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  backdrop-filter: blur(10px);
+  margin: 12px auto 0 auto;
+  text-align: center;
+  font-size: 0.69rem;
+  color: rgba(255, 255, 255, 0.45) !important;
+  line-height: 1.45;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  padding-top: 10px;
 }
 
-.pvc-icon {
-  font-size: 2.2rem;
-  flex-shrink: 0;
-  background: rgba(255, 209, 102, 0.15);
-  width: 56px;
-  height: 56px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 209, 102, 0.35);
-}
-
-.pvc-text h4 {
-  font-family: 'Outfit', sans-serif;
-  font-size: 1.15rem;
-  font-weight: 800;
-  color: #FFD166;
-  margin-bottom: 6px;
-}
-
-.pvc-text p {
-  font-size: 0.92rem;
-  color: rgba(255, 255, 255, 0.88);
-  line-height: 1.55;
-  margin: 0;
+/* Hide legacy price-value-callout if present */
+.price-value-callout {
+  display: none !important;
 }
 
 /* ─── LEGAL FOOTER & DISCLAIMER STYLES ─── */

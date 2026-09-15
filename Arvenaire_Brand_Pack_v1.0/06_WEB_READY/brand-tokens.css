@@ -1,0 +1,30 @@
+:root {
+  --arvenaire-midnight: #05070A;
+  --arvenaire-navy: #0B2444;
+  --arvenaire-platinum: #D9E0E5;
+  --arvenaire-ivory: #F6F3EC;
+  --arvenaire-sapphire: #5F86B8;
+  --arvenaire-deep-sapphire: #294C73;
+  --arvenaire-stone: #AAB7C5;
+
+  --arvenaire-bg: var(--arvenaire-ivory);
+  --arvenaire-text: var(--arvenaire-navy);
+  --arvenaire-accent: var(--arvenaire-sapphire);
+
+  --arvenaire-font: Inter, "Helvetica Neue", Arial, sans-serif;
+}
+
+.arvenaire-wordmark {
+  font-family: var(--arvenaire-font);
+  text-transform: uppercase;
+  letter-spacing: .30em;
+  font-weight: 300;
+}
+
+.arvenaire-descriptor {
+  font-family: var(--arvenaire-font);
+  text-transform: uppercase;
+  letter-spacing: .22em;
+  font-weight: 500;
+  color: var(--arvenaire-deep-sapphire);
+}

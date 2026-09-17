@@ -51,7 +51,7 @@ body::after {
   padding: 140px 24px 70px;
   position: relative; overflow: hidden;
   background: 
-    linear-gradient(180deg, rgba(12,12,18,0.32), var(--cs-dark) 96%),
+    linear-gradient(180deg, rgba(6,6,10,0.74), rgba(12,12,18,0.94) 96%),
     url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1800&q=85') center 38% / cover no-repeat;
   color: #fff !important;
 }
@@ -60,7 +60,7 @@ body::after {
   background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(155,123,26,0.18) 0%, transparent 70%);
 }
 .resources-hero > div { position: relative; z-index: 1; }
-.resources-hero p { text-shadow: 0 4px 14px rgba(0,0,0,0.85); color: rgba(255,255,255,0.7) !important; }
+.resources-hero p { text-shadow: 0 4px 14px rgba(0,0,0,0.92); color: rgba(255,255,255,0.92) !important; }
 .resources-hero h1 {
   text-shadow: 0 10px 36px rgba(0,0,0,0.85);
   font-family: var(--font-display); font-size: clamp(2.5rem,5vw,4.2rem);
@@ -410,6 +410,8 @@ body::after {
   cursor: pointer; transition: background 0.25s;
 }
 .csm-submit:hover { background: var(--cs-accent); }
+.csm-submit:disabled { cursor: wait; opacity: 0.72; }
+.csm-error { display: none; margin-top: 16px; color: #9c1c22; font-size: 0.85rem; font-weight: 600; line-height: 1.5; }
 
 .csm-success { display: none; margin-top: 16px; }
 .csm-success p { font-size: 1rem; color: var(--cs-ink); font-weight: 600; }
@@ -855,15 +857,16 @@ body::after {
     <span class="csm-emoji" id="csmEmoji">📝</span>
     <div class="csm-title">Download Resource</div>
     <div class="csm-name" id="csmName">Scholarship-Winning SOP Template Pack</div>
-    <p class="csm-desc">Enter your email address to get instant access. We will trigger the PDF download immediately.</p>
+    <p class="csm-desc">Enter your email address to request access. Your download will begin after we confirm your request.</p>
     <form class="csm-email-form" id="csmForm" onsubmit="submitDownload(event)">
-      <input type="email" id="csmEmail" placeholder="Enter your email address..." required>
-      <button type="submit" class="csm-submit">Download PDF Now →</button>
+      <input type="email" id="csmEmail" placeholder="Enter your email address..." aria-describedby="csmError" required>
+      <button type="submit" class="csm-submit">Confirm & Download PDF →</button>
     </form>
     <div class="csm-success" id="csmSuccess">
-      <p>✅ Lead verified! Your download should start automatically.</p>
-      <p style="margin-top: 14px; font-size: 0.8rem; color: rgba(255,255,255,0.4)">If it didn't start, <a href="#" id="directDownloadLink" style="color: var(--c-primary); text-decoration: underline" download>click here to download directly</a>.</p>
+      <p>✅ Your request was confirmed. Your download should start automatically.</p>
+      <p style="margin-top: 14px; font-size: 0.8rem; color: var(--cs-muted)">If it does not start, <a href="#" id="directDownloadLink" style="color: var(--c-primary); text-decoration: underline" download>download the PDF here</a>.</p>
     </div>
+    <p class="csm-error" id="csmError" role="alert" aria-live="assertive"></p>
   </div>
 </div>
 
@@ -941,6 +944,9 @@ function showDownload(name, emoji, fileUrl) {
   document.getElementById('csmEmail').value = '';
   document.getElementById('csmForm').style.display = 'flex';
   document.getElementById('csmSuccess').style.display = 'none';
+  const errorEl = document.getElementById('csmError');
+  errorEl.style.display = 'none';
+  errorEl.textContent = '';
   
   // Update direct link
   const directLink = document.getElementById('directDownloadLink');
@@ -956,43 +962,75 @@ function closeModal() {
   document.body.style.overflow = '';
 }
 
-function submitDownload(e) {
+async function submitDownload(e) {
   e.preventDefault();
-  const email = document.getElementById('csmEmail').value;
-  if (!email || !email.includes('@')) { alert('Please enter a valid email.'); return; }
-  
-  // Store lead locally
-  let leads = JSON.parse(localStorage.getItem('scholar_leads') || '[]');
-  if (!leads.includes(email)) {
-    leads.push(email);
-    localStorage.setItem('scholar_leads', JSON.stringify(leads));
+  const form = document.getElementById('csmForm');
+  const emailInput = document.getElementById('csmEmail');
+  const submitBtn = form.querySelector('.csm-submit');
+  const errorEl = document.getElementById('csmError');
+
+  if (!emailInput.checkValidity()) {
+    emailInput.reportValidity();
+    return;
+  }
+  if (!currentFileUrl) {
+    errorEl.textContent = 'This resource is unavailable right now. Please close the window and try again.';
+    errorEl.style.display = 'block';
+    return;
   }
 
-  // Send lead asynchronously to Web3Forms
+  const originalText = submitBtn.textContent;
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Confirming request…';
+  errorEl.style.display = 'none';
+  errorEl.textContent = '';
+
   try {
     const resourceName = document.getElementById('csmName').textContent || 'Resource PDF';
     const fd = new FormData();
     fd.append('access_key', '5e418a41-4cad-44f0-9b93-eccaeff3f36c');
     fd.append('subject', 'New Resource Download: ' + resourceName);
     fd.append('from_name', 'ARVENAIRE Resource Hub');
-    fd.append('email', email);
+    fd.append('email', emailInput.value.trim());
     fd.append('resource_downloaded', resourceName);
     fd.append('file_url', currentFileUrl);
-    fetch('https://api.web3forms.com/submit', { method: 'POST', body: fd }).catch(err => console.warn(err));
-  } catch(err) {
-    console.warn('Lead dispatch error:', err);
+
+    const response = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: fd });
+    let result = {};
+    try { result = await response.json(); } catch (_) {}
+    if (!response.ok || (result.success !== true && result.success !== 'true')) {
+      throw new Error(result.message || 'The request could not be confirmed.');
+    }
+
+    try {
+      const email = emailInput.value.trim();
+      const leads = JSON.parse(localStorage.getItem('scholar_leads') || '[]');
+      if (!leads.includes(email)) {
+        leads.push(email);
+        localStorage.setItem('scholar_leads', JSON.stringify(leads));
+      }
+    } catch (storageError) {
+      console.warn('Local lead storage was unavailable:', storageError);
+    }
+
+    form.style.display = 'none';
+    document.getElementById('csmSuccess').style.display = 'block';
+
+    const link = document.createElement('a');
+    link.href = currentFileUrl;
+    link.download = currentFileUrl.split('/').pop();
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  } catch (err) {
+    console.error('Resource request error:', err);
+    errorEl.textContent = 'We could not confirm your request. Please check your connection and try again.';
+    errorEl.style.display = 'block';
+    emailInput.focus();
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = originalText;
   }
-  
-  document.getElementById('csmForm').style.display = 'none';
-  document.getElementById('csmSuccess').style.display = 'block';
-  
-  // Auto-download
-  const link = document.createElement('a');
-  link.href = currentFileUrl;
-  link.download = currentFileUrl.split('/').pop();
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
 }
 
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });

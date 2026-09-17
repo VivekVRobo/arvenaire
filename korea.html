@@ -259,7 +259,7 @@ a { text-decoration: none; color: inherit; }
   content: '';
   position: absolute;
   inset: -60px -80px;
-  background: radial-gradient(ellipse at center, rgba(0,0,10,0.72) 0%, rgba(0,0,10,0.45) 45%, transparent 75%);
+  background: radial-gradient(ellipse at center, rgba(0,0,10,0.85) 0%, rgba(0,0,10,0.60) 55%, transparent 80%);
   border-radius: 50%;
   z-index: -1;
   pointer-events: none;
@@ -303,20 +303,21 @@ a { text-decoration: none; color: inherit; }
 .kr-title .t3 {
   display: block;
   font-family: 'Noto Serif KR', serif;
-  font-size: 0.28em;
-  font-weight: 400;
-  letter-spacing: 14px;
-  color: rgba(255,255,255,0.25);
+  font-size: 0.32em;
+  font-weight: 700;
+  letter-spacing: 12px;
+  color: #FFFFFF;
   margin-top: 18px;
-  -webkit-text-fill-color: rgba(255,255,255,0.25);
+  -webkit-text-fill-color: #FFFFFF;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.95);
 }
 
 /* Italic storytelling sub */
 .kr-sub {
   font-size: clamp(0.88rem, 1.4vw, 1.05rem);
   font-style: italic;
-  color: rgba(255,255,255,0.75);
-  letter-spacing: 1px;
+  color: rgba(255,255,255,0.92);
+  letter-spacing: 0.5px;
   line-height: 1.8;
   margin-bottom: 52px;
   font-family: 'Inter', sans-serif;
@@ -328,7 +329,7 @@ a { text-decoration: none; color: inherit; }
   display: flex; flex-direction: column; align-items: center; gap: 10px;
   animation: floatCue 2.4s ease-in-out infinite;
 }
-.kr-scroll-cue span { font-size: 0.6rem; letter-spacing: 5px; text-transform: uppercase; color: rgba(255,255,255,0.28); }
+.kr-scroll-cue span { font-size: 0.6rem; letter-spacing: 5px; text-transform: uppercase; color: rgba(255,255,255,0.65); text-shadow: 0 1px 8px rgba(0,0,0,0.9); }
 .kr-cue-line {
   width: 1px; height: 64px;
   background: linear-gradient(to bottom, rgba(255,209,102,0.7), transparent);

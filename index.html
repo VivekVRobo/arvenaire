@@ -18,7 +18,7 @@
       "@id": "https://arvenaire.com/#organization",
       "name": "Arvenaire",
       "url": "https://arvenaire.com",
-      "logo": "https://arvenaire.com/opengraph.jpg",
+      "logo": "https://arvenaire.com/arvenaire-hero.png",
       "description": "Message-based guidance and action roadmaps for engineers heading to Germany, Japan, and South Korea.",
       "sameAs": [
         "https://www.instagram.com/arvenaire.inquiry/",
@@ -43,15 +43,15 @@
 <meta property="og:url" content="https://arvenaire.com/">
 <meta property="og:title" content="Arvenaire | Global Engineering Careers & Scholarships">
 <meta property="og:description" content="Roadmaps to Japan (MEXT), Germany (DAAD, Werkstudent), and South Korea (GKS) — plus ATS CV templates, transition kits, and 1-on-1 strategy sessions.">
-<meta property="og:image" content="https://arvenaire.com/opengraph.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
+<meta property="og:image" content="https://arvenaire.com/arvenaire-hero.png">
+<meta property="og:image:width" content="1983">
+<meta property="og:image:height" content="793">
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image">
 <meta property="twitter:title" content="Arvenaire | Global Engineering Careers & Scholarships">
 <meta property="twitter:description" content="Roadmaps to Japan (MEXT), Germany (DAAD, Werkstudent), and South Korea (GKS) — plus ATS CV templates, transition kits, and 1-on-1 strategy sessions.">
-<meta property="twitter:image" content="https://arvenaire.com/opengraph.jpg">
+<meta property="twitter:image" content="https://arvenaire.com/arvenaire-hero.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;700;900&family=Inter:wght@300;400;500;600;700&family=Cinzel:wght@400;700;900&display=swap" rel="stylesheet">
@@ -481,6 +481,8 @@ html,body{
 
 .wm-success { position:absolute;inset:0;background:rgba(20,20,30,0.98);border-radius:24px;display:flex;align-items:center;justify-content:center;flex-direction:column;padding:32px;opacity:1;transition:opacity 0.4s; }
 .wm-success.hidden { opacity:0;pointer-events:none; }
+.wm-error { margin-top:14px;color:#ffd6d6;font-size:.88rem;line-height:1.45; }
+.wm-error.hidden { display:none; }
 .wm-success-icon { font-size:3.5rem;margin-bottom:16px; }
 .wm-success h4 { font-family:'Outfit',sans-serif;font-size:1.8rem;margin-bottom:10px;color:#fff; }
 .wm-success p { color:rgba(255,255,255,0.6);font-size:.95rem;line-height:1.5; }
@@ -580,7 +582,7 @@ html,body{
     <h3 class="wm-title">Join the <span id="wm-country" class="wm-grad">Germany</span> Waitlist</h3>
     <p class="wm-desc">Be the first to access the interactive map and get a message-based roadmap note when we launch.</p>
     
-    <form class="wm-form" onsubmit="submitWaitlist(event)">
+    <form class="wm-form" id="wm-form" onsubmit="submitWaitlist(event)">
       <input type="email" id="wm-email" placeholder="Enter your email address..." required>
       <select id="wm-degree" required>
         <option value="" disabled selected>Target Degree Level</option>
@@ -590,6 +592,7 @@ html,body{
       </select>
       <button type="submit" class="wm-submit">Get Early Access →</button>
     </form>
+    <p class="wm-error hidden" id="wm-error" role="alert" aria-live="assertive"></p>
     
     <div class="wm-success hidden" id="wm-success">
       <div class="wm-success-icon">✨</div>
@@ -1276,19 +1279,33 @@ function showSoon(flag, name){
 
 function closeWaitlist(){
   document.getElementById('waitlist-modal').classList.add('hidden');
+  document.getElementById('wm-success').classList.add('hidden');
+  const errorEl = document.getElementById('wm-error');
+  errorEl.classList.add('hidden');
+  errorEl.textContent = '';
+  document.getElementById('wm-form').reset();
 }
 
 async function submitWaitlist(e){
   e.preventDefault();
-  const btn = e.target.querySelector('.wm-submit');
-  const ogText = btn.textContent;
-  const email = document.getElementById('wm-email').value;
+  const form = document.getElementById('wm-form');
+  const btn = form.querySelector('.wm-submit');
+  const errorEl = document.getElementById('wm-error');
+  const email = document.getElementById('wm-email').value.trim();
   const degree = document.getElementById('wm-degree').value;
   const countryEl = document.getElementById('wm-country');
   const country = countryEl ? countryEl.textContent.trim() : 'Waitlist';
 
-  btn.textContent = 'Saving Spot...';
+  if (!form.checkValidity()) {
+    form.reportValidity();
+    return;
+  }
+
+  const originalText = btn.textContent;
+  btn.textContent = 'Saving Spot…';
   btn.disabled = true;
+  errorEl.classList.add('hidden');
+  errorEl.textContent = '';
 
   try {
     const formData = new FormData();
@@ -1299,17 +1316,26 @@ async function submitWaitlist(e){
     formData.append('degree_level', degree);
     formData.append('country', country);
 
-    await fetch('https://api.web3forms.com/submit', {
+    const response = await fetch('https://api.web3forms.com/submit', {
       method: 'POST',
       body: formData
     });
-  } catch(err) {
-    console.warn('Waitlist post error:', err);
-  }
+    let result = {};
+    try { result = await response.json(); } catch (_) {}
+    if (!response.ok || (result.success !== true && result.success !== 'true')) {
+      throw new Error(result.message || 'The waitlist request could not be confirmed.');
+    }
 
-  btn.textContent = ogText;
-  btn.disabled = false;
-  document.getElementById('wm-success').classList.remove('hidden');
+    document.getElementById('wm-success').classList.remove('hidden');
+    form.reset();
+  } catch(err) {
+    console.error('Waitlist request error:', err);
+    errorEl.textContent = 'We could not save your spot. Please check your connection and try again.';
+    errorEl.classList.remove('hidden');
+  } finally {
+    btn.textContent = originalText;
+    btn.disabled = false;
+  }
 }
 
 /* ─── Animated Count-Up ─── */

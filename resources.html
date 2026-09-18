@@ -315,6 +315,16 @@ body::after {
   align-self: flex-start;
 }
 .resource-btn:hover { background: var(--cs-accent); color: #fff; }
+.resource-card.resource-review { border-color: rgba(255,193,7,.38); }
+.resource-review .resource-free { background: rgba(255,193,7,.12) !important; color: #ffd166 !important; }
+.resource-review .resource-dl-count { color: #ffd166 !important; }
+.resource-btn[disabled] { cursor: not-allowed; opacity: .62; transform:none !important; }
+.resource-review-note {
+  max-width: 1100px; margin: 0 auto 28px; padding: 14px 18px;
+  border: 1px solid rgba(255,193,7,.28); background: rgba(255,193,7,.06);
+  color: var(--cs-muted); font-size: .84rem; line-height: 1.6;
+}
+
 
 /* ─── FEATURED RESOURCE CARD (Solid Ink) ─── */
 .resource-card.res-feat {
@@ -612,7 +622,7 @@ body::after {
 <!-- Stats -->
 <div class="resources-stats">
   <div class="rs-stat"><div class="rs-num">13</div><div class="rs-label">Free Resources</div></div>
-  <div class="rs-stat rs-feat"><div class="rs-num">13</div><div class="rs-label">Active PDFs</div></div>
+  <div class="rs-stat rs-feat"><div class="rs-num">13</div><div class="rs-label">Resource Files</div></div>
   <div class="rs-stat"><div class="rs-num">100%</div><div class="rs-label">Core Guides Free</div></div>
 </div>
 
@@ -704,6 +714,9 @@ body::after {
 </section>
 
 <!-- Resource Tracks -->
+<div class="resource-review-note" role="note">
+  <strong>Resource accuracy review:</strong> five admissions PDFs are temporarily withheld from normal download because their cycle dates, publisher attribution, or claimed sample provenance still need verification. They will return only after source and ownership checks are complete.
+</div>
 <div class="resource-tracks" id="resourcesGrid">
   <section class="resource-track" aria-labelledby="trackAdmissions">
     <div class="track-head">
@@ -712,54 +725,54 @@ body::after {
       <p>Use these free guides when your immediate goal is DAAD, MEXT, GKS, professor outreach, research proposals, or a stronger university application.</p>
     </div>
     <div class="resources-grid resource-track-grid">
-      <div class="resource-card res-feat" data-track="admissions" data-cat="templates">
+      <div class="resource-card res-feat resource-review" data-track="admissions" data-cat="templates">
         <div class="resource-icon">📝</div>
-        <span class="resource-free">FREE</span>
+        <span class="resource-free">UNDER REVIEW</span>
         <div class="resource-tag">SOP Templates</div>
-        <h3>Scholarship-Winning SOP Template Pack</h3>
-        <p>3 proven SOP frameworks for MEXT, DAAD, and CSC scholarships. Includes annotated examples of successful SOPs from accepted students.</p>
-        <div class="resource-dl-count">PDF · Free resource</div>
-        <button class="resource-btn" onclick="showDownload('Scholarship-Winning SOP Template Pack', '📝', 'downloads/01_SOP_Template_Pack.pdf')">Download PDF</button>
+        <h3>SOP Template Pack</h3>
+        <p>Temporarily withheld while publisher attribution and the provenance/permission of claimed accepted-student examples are verified.</p>
+        <div class="resource-dl-count">Provenance review pending</div>
+        <button class="resource-btn" type="button" disabled>Download paused</button>
       </div>
 
-      <div class="resource-card" data-track="admissions" data-cat="templates">
+      <div class="resource-card resource-review" data-track="admissions" data-cat="templates">
         <div class="resource-icon">📧</div>
-        <span class="resource-free">FREE</span>
+        <span class="resource-free">UNDER REVIEW</span>
         <div class="resource-tag">Email Templates</div>
-        <h3>Cold Email to Professor — 5 Templates</h3>
-        <p>Word-for-word email templates to contact potential supervisors in Japan, Germany, South Korea, and Australia. Personalisation guide included.</p>
-        <div class="resource-dl-count">PDF · Free resource</div>
-        <button class="resource-btn" onclick="showDownload('Cold Email to Professor — 5 Templates', '📧', 'downloads/02_Cold_Email_Templates.pdf')">Download PDF</button>
+        <h3>Cold Email to Professor — Template Pack</h3>
+        <p>Temporarily withheld while publisher attribution, dated examples, and current-cycle instructions are reviewed.</p>
+        <div class="resource-dl-count">Attribution &amp; cycle review pending</div>
+        <button class="resource-btn" type="button" disabled>Download paused</button>
       </div>
 
-      <div class="resource-card" data-track="admissions" data-cat="checklists">
+      <div class="resource-card resource-review" data-track="admissions" data-cat="checklists">
         <div class="resource-icon">✅</div>
-        <span class="resource-free">FREE</span>
-        <div class="resource-tag">Checklists</div>
-        <h3>MEXT Scholarship Complete Checklist 2026</h3>
-        <p>Every document, deadline, and selection step for the MEXT Embassy Route — in one organized master checklist for Indian students.</p>
-        <div class="resource-dl-count">PDF · Free resource</div>
-        <button class="resource-btn" onclick="showDownload('MEXT Scholarship Complete Checklist 2026', '✅', 'downloads/03_MEXT_Scholarship_Checklist.pdf')">Download PDF</button>
+        <span class="resource-free">ARCHIVED</span>
+        <div class="resource-tag">MEXT Checklist</div>
+        <h3>MEXT India Checklist — Revision Required</h3>
+        <p>The existing PDF reflects an older process and must not be used for the 2027 India Research Students cycle. Use the current Embassy of Japan instructions instead.</p>
+        <div class="resource-dl-count">Operational guidance withheld</div>
+        <a class="resource-btn" href="https://www.in.emb-japan.go.jp/Education/Research_Student.html" target="_blank" rel="noopener noreferrer">Open Official MEXT India Page</a>
       </div>
 
-      <div class="resource-card res-feat" data-track="admissions" data-cat="templates">
+      <div class="resource-card res-feat resource-review" data-track="admissions" data-cat="templates">
         <div class="resource-icon">🔬</div>
-        <span class="resource-free">FREE</span>
+        <span class="resource-free">UNDER REVIEW</span>
         <div class="resource-tag">Research Proposal</div>
-        <h3>Research Proposal Template (PhD Scholarships)</h3>
-        <p>A structured template for writing research proposals for MEXT, GKS, RTP, and DAAD PhD scholarships — with annotated examples.</p>
-        <div class="resource-dl-count">PDF · Free resource</div>
-        <button class="resource-btn" onclick="showDownload('Research Proposal Template (PhD Scholarships)', '🔬', 'downloads/09_Research_Proposal_Template.pdf')">Download PDF</button>
+        <h3>Research Proposal Template</h3>
+        <p>Temporarily withheld while the provenance of the claimed successful-proposal example and publisher attribution are verified.</p>
+        <div class="resource-dl-count">Provenance review pending</div>
+        <button class="resource-btn" type="button" disabled>Download paused</button>
       </div>
 
-      <div class="resource-card" data-track="admissions" data-cat="tools">
+      <div class="resource-card resource-review" data-track="admissions" data-cat="tools">
         <div class="resource-icon">📊</div>
-        <span class="resource-free">FREE</span>
+        <span class="resource-free">UNDER REVIEW</span>
         <div class="resource-tag">Comparison Tool</div>
-        <h3>5-Country Scholarship Comparison Sheet</h3>
-        <p>Side-by-side comparison of Japan, Germany, China, South Korea, and Australia — scholarships, stipends, costs, and PR pathways.</p>
-        <div class="resource-dl-count">PDF · Free resource</div>
-        <button class="resource-btn" onclick="showDownload('5-Country Scholarship Comparison Sheet', '📊', 'downloads/08_5_Country_Scholarship_Comparison.pdf')">Download PDF</button>
+        <h3>5-Country Comparison Sheet</h3>
+        <p>Temporarily withheld because its broad residency-path ratings, currencies, and date-sensitive scholarship comparisons require primary-source revalidation.</p>
+        <div class="resource-dl-count">Data review pending</div>
+        <button class="resource-btn" type="button" disabled>Download paused</button>
       </div>
     </div>
   </section>

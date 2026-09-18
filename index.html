@@ -531,7 +531,7 @@ html,body{
 </style>
 <noscript>
   <style>
-    #preloader, #c, #scroll-ghost, #progress, #bottom-bar { display:none !important; }
+    #preloader, #c, #scroll-spacer, #scroll-ghost, #progress, #bottom-bar { display:none !important; }
     #intro { position:relative; min-height:100vh; }
   </style>
 </noscript>
@@ -542,7 +542,7 @@ html,body{
 <canvas id="c"></canvas>
 
 <!-- SCROLL SPACER (Creates the scrollable depth) -->
-<div style="width:1px;height:500vh;pointer-events:none;"></div>
+<div id="scroll-spacer" style="width:1px;height:500vh;pointer-events:none;" aria-hidden="true"></div>
 
 <!-- PRELOADER -->
 <div id="preloader">
@@ -695,6 +695,8 @@ html,body{
     document.getElementById('preloader')?.classList.add('out');
     const cv = document.getElementById('c');
     if (cv) cv.style.display = 'none';
+    const spacer = document.getElementById('scroll-spacer');
+    if (spacer) spacer.style.display = 'none';
     window.startCountryDive = (_country, targetUrl) => { window.location.href = targetUrl; };
     window.startJapanDive = () => { window.location.href = 'japan.html'; };
   };

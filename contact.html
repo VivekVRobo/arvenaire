@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <title>Get Your Profile Reviewed — Arvenaire</title>
-<meta name="description" content="Submit your CV, GPA, and target country. Arvenaire replies in writing within 24–48 hours with a checklist, useful links, and clear next steps — no upsell.">
-<link rel="canonical" href="https://arvenaire.com/contact">
+<meta name="description" content="Submit your CV, GPA, and target country. Arvenaire typically replies in writing within 24–48 hours on weekdays with a checklist, useful links, and clear next steps.">
+<link rel="canonical" href="https://arvenaire.vercel.app/contact">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;700;900&family=Inter:wght@300;400;500;600;700&family=Cinzel:wght@400;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
@@ -192,6 +192,23 @@ button { cursor: pointer; }
   border-color: var(--cs-gold); background: var(--cs-gold);
   color: var(--cs-ink); font-weight: 600;
 }
+.radio-pill { position: relative; }
+.radio-pill input {
+  position: absolute; width: 1px; height: 1px; opacity: 0.01;
+}
+.radio-pill:has(input:checked) {
+  border-color: var(--c-primary);
+  background: rgba(155,123,26,0.12);
+}
+.radio-pill:focus-within {
+  outline: 3px solid var(--c-primary);
+  outline-offset: 3px;
+}
+.session-fieldset { border: 0; padding: 0; margin: 0 0 22px; min-width: 0; }
+.form-privacy { margin: -4px 0 16px; font-size: .78rem; line-height: 1.55; color: rgba(255,255,255,.7); }
+.form-privacy a { text-decoration: underline; }
+.form-error { display:none; margin: 0 0 14px; color: #ffb4b4; font-size: .86rem; line-height:1.5; }
+
 
 /* submit button */
 .submit-btn {
@@ -343,10 +360,11 @@ button { cursor: pointer; }
   </div>
 </nav>
 
+<main id="main-content">
 <div class="contact-hero">
   <div>
     <p class="section-tag">Free Profile Audit</p>
-    <h1>Get Your Profile <span class="hero-highlight">Reviewed in 24 Hours</span></h1>
+    <h1>Get Your Profile <span class="hero-highlight">Reviewed in 24–48 Hours</span></h1>
   </div>
 </div>
 
@@ -355,7 +373,7 @@ button { cursor: pointer; }
   <!-- ── FORM ─────────────────────────────────────── -->
   <div class="contact-form-box">
     <h2>Submit Your Profile</h2>
-    <p>We reply to every message within 24–48 hours. No spam, no upsells — just honest advice.</p>
+    <p>We typically reply within 24–48 hours on weekdays. Submitting this form does not opt you into unrelated marketing.</p>
 
     <form id="contactForm">
       <!-- Web3Forms hidden fields -->
@@ -367,12 +385,12 @@ button { cursor: pointer; }
 
       <div class="fl-group">
         <input type="text" id="cf-name" name="name" placeholder=" " required>
-        <label for="cf-name">Your Name</label>
+        <label for="cf-name">Your Name (required)</label>
       </div>
 
       <div class="fl-group">
         <input type="email" id="cf-email" name="email" placeholder=" " required>
-        <label for="cf-email">Email Address</label>
+        <label for="cf-email">Email Address (required)</label>
       </div>
 
       <div class="fl-row">
@@ -390,7 +408,7 @@ button { cursor: pointer; }
             <option value="australia">🇦🇺 Australia (waitlist)</option>
             <option value="undecided">Still deciding</option>
           </select>
-          <label for="cf-country">Target Country</label>
+          <label for="cf-country">Target Country (required)</label>
         </div>
       </div>
 
@@ -403,7 +421,7 @@ button { cursor: pointer; }
         <select id="cf-topic" name="topic" required>
           <option value="" disabled selected hidden>Select a topic...</option>
           <option value="strategy_session">1-on-1 Germany Strategy Session (₹2,499)</option>
-          <option value="transition_kit">Germany Automation Transition Kit (₹499)</option>
+          <option value="transition_kit">Germany Automation &amp; Robotics Transition Kit (₹499)</option>
           <option value="daad">DAAD Scholarship & Universities (Germany)</option>
           <option value="mext">MEXT Scholarship (Japan)</option>
           <option value="gks">GKS Scholarship (South Korea)</option>
@@ -411,29 +429,38 @@ button { cursor: pointer; }
           <option value="werkstudent">Germany Werkstudent / Job Placement Strategy</option>
           <option value="general">General Inquiry / Guidance</option>
         </select>
-        <label for="cf-topic">What do you need help with?</label>
+        <label for="cf-topic">What do you need help with? (required)</label>
       </div>
 
       <div class="fl-group">
         <textarea id="cf-message" name="message" rows="5" placeholder=" " maxlength="1000" required oninput="updateCounter(this)"></textarea>
-        <label for="cf-message">Anything else? (goals, target role, deadlines)</label>
+        <label for="cf-message">Your goals and question (required)</label>
         <div class="char-counter" id="charCount">0 / 1000</div>
       </div>
 
-      <span class="session-label">How should we respond?</span>
-      <div class="radio-row" id="sessionGroup">
-        <div class="radio-pill active" onclick="selectSession(this, 'Detailed message reply')" data-val="Detailed">Detailed message reply</div>
-        <div class="radio-pill" onclick="selectSession(this, 'Quick answer only')" data-val="Quick">Quick answer only</div>
-      </div>
-      <input type="hidden" id="sessionInput" name="reply_preference" value="Detailed message reply">
+      <fieldset class="session-fieldset">
+        <legend class="session-label">How should we respond?</legend>
+        <div class="radio-row" id="sessionGroup">
+          <label class="radio-pill">
+            <input type="radio" name="reply_preference" value="Detailed message reply" checked>
+            <span>Detailed message reply</span>
+          </label>
+          <label class="radio-pill">
+            <input type="radio" name="reply_preference" value="Quick answer only">
+            <span>Quick answer only</span>
+          </label>
+        </div>
+      </fieldset>
 
+      <p class="form-privacy">We use the details you submit to respond to this inquiry. Read the <a href="privacy.html">Privacy Policy</a>.</p>
+      <p class="form-error" id="formError" role="alert" aria-live="assertive"></p>
       <button type="submit" class="submit-btn" id="submitBtn">Send Message →</button>
     </form>
 
     <div class="form-success" id="formSuccess">
       <div class="suc-ico">✨</div>
       <h3>Message Sent!</h3>
-      <p>Thank you! We've received your message and will reply to <strong id="successEmail"></strong> within 24–48 hours. Check your inbox!</p>
+      <p>Thank you. We've received your message and typically reply to <strong id="successEmail"></strong> within 24–48 hours on weekdays.</p>
     </div>
   </div>
 
@@ -480,11 +507,12 @@ button { cursor: pointer; }
 
     <div class="info-block" style="border-left: 3px solid var(--c-primary);">
       <h4>⚡ Response Time</h4>
-      <p>We typically reply within <strong style="color:var(--c-primary)">24–48 hours</strong> on weekdays. For urgent scholarship deadline queries, mention it in your message and we'll prioritise your response.</p>
+      <p>We typically reply within <strong style="color:var(--c-primary)">24–48 hours</strong> on weekdays. If a deadline is relevant, include the exact date so we can understand the context.</p>
     </div>
 
   </div>
 </div>
+</main>
 
 <script>
 window.addEventListener('scroll', () => {
@@ -533,13 +561,6 @@ function updateCounter(el) {
   counter.classList.toggle('warn', count > 800);
 }
 
-/* session selector */
-function selectSession(el, val) {
-  document.querySelectorAll('.radio-pill').forEach(p => p.classList.remove('active'));
-  el.classList.add('active');
-  document.getElementById('sessionInput').value = val;
-}
-
 /* CV upload */
 function handleCVUpload(input) {
   const wrapper = input.closest('.cv-upload');
@@ -575,6 +596,9 @@ document.getElementById('contactForm').addEventListener('submit', async function
   e.preventDefault();
   const btn = document.getElementById('submitBtn');
   const email = document.getElementById('cf-email').value;
+  const formError = document.getElementById('formError');
+  formError.style.display = 'none';
+  formError.textContent = '';
 
   btn.textContent = 'Sending...';
   btn.disabled = true;
@@ -589,7 +613,9 @@ document.getElementById('contactForm').addEventListener('submit', async function
     }
     btn.textContent = 'Send Message →';
     btn.disabled = false;
-    alert('The contact form is not connected yet. Add your Web3Forms access key before going live so leads reach your inbox.');
+    formError.textContent = 'The contact form is temporarily unavailable. Your entries are still here; please try again later.';
+    formError.style.display = 'block';
+    formError.focus?.();
     return;
   }
 
@@ -612,9 +638,13 @@ document.getElementById('contactForm').addEventListener('submit', async function
       throw new Error(data.message || 'Submission failed');
     }
   } catch (err) {
+    console.error('Contact submission failed:', err);
     btn.textContent = 'Send Message →';
     btn.disabled = false;
-    alert('Failed to send: ' + err.message + '\n\nPlease check your internet connection or verify your Web3Forms access key.');
+    formError.textContent = 'Your message could not be sent. Your entries have been preserved; check your connection and try again.';
+    formError.style.display = 'block';
+    formError.setAttribute('tabindex', '-1');
+    formError.focus();
   }
 });
 </script>

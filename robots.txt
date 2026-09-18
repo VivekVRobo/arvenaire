@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://arvenaire.com/sitemap.xml
+Sitemap: https://arvenaire.vercel.app/sitemap.xml

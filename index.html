@@ -6,7 +6,7 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <title>Arvenaire | Global Engineering Careers & Scholarships</title>
 <meta name="description" content="Message-based guidance for engineers heading abroad: MEXT (Japan), DAAD (Germany), GKS (Korea), plus ATS CV templates, Werkstudent strategy, and portfolio roadmaps.">
-<link rel="canonical" href="https://arvenaire.com/">
+<link rel="canonical" href="https://arvenaire.vercel.app/">
 
 <!-- JSON-LD: EducationalOrganization + WebSite -->
 <script type="application/ld+json">
@@ -15,10 +15,10 @@
   "@graph": [
     {
       "@type": "EducationalOrganization",
-      "@id": "https://arvenaire.com/#organization",
+      "@id": "https://arvenaire.vercel.app/#organization",
       "name": "Arvenaire",
-      "url": "https://arvenaire.com",
-      "logo": "https://arvenaire.com/arvenaire-hero.png",
+      "url": "https://arvenaire.vercel.app",
+      "logo": "https://arvenaire.vercel.app/arvenaire-hero.png",
       "description": "Message-based guidance and action roadmaps for engineers heading to Germany, Japan, and South Korea.",
       "sameAs": [
         "https://www.instagram.com/arvenaire.inquiry/",
@@ -27,11 +27,11 @@
     },
     {
       "@type": "WebSite",
-      "@id": "https://arvenaire.com/#website",
-      "url": "https://arvenaire.com",
+      "@id": "https://arvenaire.vercel.app/#website",
+      "url": "https://arvenaire.vercel.app",
       "name": "Arvenaire",
       "publisher": {
-        "@id": "https://arvenaire.com/#organization"
+        "@id": "https://arvenaire.vercel.app/#organization"
       }
     }
   ]
@@ -40,10 +40,10 @@
 
 <!-- Open Graph / LinkedIn / WhatsApp -->
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://arvenaire.com/">
+<meta property="og:url" content="https://arvenaire.vercel.app/">
 <meta property="og:title" content="Arvenaire | Global Engineering Careers & Scholarships">
 <meta property="og:description" content="Roadmaps to Japan (MEXT), Germany (DAAD, Werkstudent), and South Korea (GKS) — plus ATS CV templates, transition kits, and 1-on-1 strategy sessions.">
-<meta property="og:image" content="https://arvenaire.com/arvenaire-hero.png">
+<meta property="og:image" content="https://arvenaire.vercel.app/arvenaire-hero.png">
 <meta property="og:image:width" content="1983">
 <meta property="og:image:height" content="793">
 
@@ -51,7 +51,7 @@
 <meta property="twitter:card" content="summary_large_image">
 <meta property="twitter:title" content="Arvenaire | Global Engineering Careers & Scholarships">
 <meta property="twitter:description" content="Roadmaps to Japan (MEXT), Germany (DAAD, Werkstudent), and South Korea (GKS) — plus ATS CV templates, transition kits, and 1-on-1 strategy sessions.">
-<meta property="twitter:image" content="https://arvenaire.com/arvenaire-hero.png">
+<meta property="twitter:image" content="https://arvenaire.vercel.app/arvenaire-hero.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;700;900&family=Inter:wght@300;400;500;600;700&family=Cinzel:wght@400;700;900&display=swap" rel="stylesheet">
@@ -134,6 +134,8 @@ html,body{
 }
 .country-card{
   background:rgba(12,14,20,0.82);
+  color:inherit;
+  text-decoration:none;
   border:1px solid rgba(255,255,255,0.12);
   border-radius:16px;
   padding:20px 20px 18px;
@@ -176,6 +178,10 @@ html,body{
 .country-card:hover .cc-arrow{
   color:#FFD166;
   transform:translateX(3px);
+}
+.country-card:focus-visible{
+  outline:3px solid #FFD166;
+  outline-offset:4px;
 }
 .cc-desc{
   font-size:0.82rem;
@@ -513,7 +519,22 @@ html,body{
   .country-card { padding: 14px 16px 12px; min-height: 130px; }
   .cc-desc { margin-bottom: 8px; font-size: 0.78rem; }
 }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+  #c { display:none; }
+}
 </style>
+<noscript>
+  <style>
+    #preloader, #c, #scroll-spacer, #scroll-ghost, #progress, #bottom-bar { display:none !important; }
+    #intro { position:relative; min-height:100vh; }
+  </style>
+</noscript>
 </head>
 <body>
 
@@ -521,7 +542,7 @@ html,body{
 <canvas id="c"></canvas>
 
 <!-- SCROLL SPACER (Creates the scrollable depth) -->
-<div style="width:1px;height:500vh;pointer-events:none;"></div>
+<div id="scroll-spacer" style="width:1px;height:500vh;pointer-events:none;" aria-hidden="true"></div>
 
 <!-- PRELOADER -->
 <div id="preloader">
@@ -531,47 +552,47 @@ html,body{
 </div>
 
 <!-- INTRO: COUNTRY SELECT -->
-<div id="intro">
+<main id="intro">
   <div class="intro-badge">GLOBAL ENGINEERING ADVISORY</div>
   <h1 class="intro-title">Direct Pathways to<br><span class="intro-grad">Global Engineering.</span></h1>
   
   <div class="country-cards">
-    <div class="country-card country-btn" data-c="germany" onclick="startCountryDive('germany', 'germany.html')">
+    <a class="country-card country-btn" href="germany.html" data-c="germany" onclick="if (typeof startCountryDive === 'function') { event.preventDefault(); startCountryDive('germany', 'germany.html'); }">
       <div class="cc-head">
         <span class="cc-name">Germany</span>
         <span class="cc-arrow">→</span>
       </div>
-      <p class="cc-desc">TU9 public universities, DAAD scholarships, APS guidance, and Werkstudent industry placement in robotics and automation.</p>
+      <p class="cc-desc">Engineering study routes, programme-specific DAAD funding checks, APS planning, and preparation for working-student opportunities.</p>
       <span class="cc-action">Explore Pathway</span>
-    </div>
+    </a>
 
-    <div class="country-card country-btn" data-c="japan" onclick="startJapanDive()">
+    <a class="country-card country-btn" href="japan.html" data-c="japan" onclick="if (typeof startJapanDive === 'function') { event.preventDefault(); startJapanDive(); }">
       <div class="cc-head">
         <span class="cc-name">Japan</span>
         <span class="cc-arrow">→</span>
       </div>
-      <p class="cc-desc">MEXT full government scholarship, professor matching, English-taught Master's/PhD labs, and Japanese corporate hiring.</p>
+      <p class="cc-desc">MEXT cycle guidance, graduate research fit, study-route planning, workplace readiness, and engineering career preparation.</p>
       <span class="cc-action">Explore Pathway</span>
-    </div>
+    </a>
 
-    <div class="country-card country-btn" data-c="korea" onclick="startCountryDive('korea', 'korea.html')">
+    <a class="country-card country-btn" href="korea.html" data-c="korea" onclick="if (typeof startCountryDive === 'function') { event.preventDefault(); startCountryDive('korea', 'korea.html'); }">
       <div class="cc-head">
         <span class="cc-name">South Korea</span>
         <span class="cc-arrow">→</span>
       </div>
-      <p class="cc-desc">Global Korea Scholarship (GKS), full tuition waivers, monthly stipends, and research placement at leading national institutes.</p>
+      <p class="cc-desc">GKS track guidance, research-university planning, Korean workplace readiness, and engineering career preparation.</p>
       <span class="cc-action">Explore Pathway</span>
-    </div>
+    </a>
   </div>
 
-  <div class="trust-strip">
-    <div class="ts-item"><strong class="count-up" data-target="300" data-suffix="+">300+</strong> Engineers Guided</div>
+  <div class="trust-strip" aria-label="Arvenaire service scope">
+    <div class="ts-item"><strong>Country-specific</strong> engineering roadmaps</div>
     <span class="ts-sep"></span>
-    <div class="ts-item"><strong>₹<span class="count-up" data-target="50" data-suffix="M+">50M+</span></strong> Scholarships &amp; Grants</div>
+    <div class="ts-item"><strong>Official-source</strong> verification links</div>
     <span class="ts-sep"></span>
-    <div class="ts-item"><strong class="count-up" data-target="100" data-suffix="%">100%</strong> Transparent Advisory</div>
+    <div class="ts-item"><strong>Free guides</strong> with optional paid support</div>
   </div>
-</div>
+</main>
 
 <!-- WAITLIST MODAL -->
 <div id="waitlist-modal" class="hidden">
@@ -656,12 +677,48 @@ html,body{
 </div>
 
 <!-- SCRIPTS -->
+<script>
+/* Reliability fallback: the content/navigation must never depend on Three.js. */
+(function(){
+  const hidePreloader = () => document.getElementById('preloader')?.classList.add('out');
+  window.__arvenaireStaticNavigate = (_country, targetUrl) => { window.location.href = targetUrl; };
+  setTimeout(hidePreloader, 4500);
+})();
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
 /* Globe idle scene on index */
 (function(){
+  const enableStaticFallback = (reason) => {
+    console.warn('Arvenaire 3D fallback enabled:', reason);
+    document.documentElement.classList.add('no-webgl');
+    document.getElementById('preloader')?.classList.add('out');
+    const cv = document.getElementById('c');
+    if (cv) cv.style.display = 'none';
+    const spacer = document.getElementById('scroll-spacer');
+    if (spacer) spacer.style.display = 'none';
+    window.startCountryDive = (_country, targetUrl) => { window.location.href = targetUrl; };
+    window.startJapanDive = () => { window.location.href = 'japan.html'; };
+  };
+
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    enableStaticFallback('reduced motion preference');
+    return;
+  }
+
+  if (!window.THREE) {
+    enableStaticFallback('Three.js unavailable');
+    return;
+  }
+
   const cv=document.getElementById('c');
-  const renderer=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:false});
+  let renderer;
+  try {
+    renderer=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:false});
+  } catch (error) {
+    enableStaticFallback(error?.message || 'WebGL unavailable');
+    return;
+  }
   renderer.setPixelRatio(Math.min(devicePixelRatio,2));
   renderer.setSize(innerWidth,innerHeight);
   renderer.setClearColor(0x000000, 1); // Pure deep space black
@@ -893,9 +950,9 @@ html,body{
   // Scroll Story Configuration
   const story = [
     { p: 0, rot: -1.2,  camZ: 28, showIntro: true, tag: '', title: '', body: '' },
-    { p: 0.25, rot: -2.3, camZ: 17, showIntro: false, tag: 'Step 1', title: 'Profile Evaluation', body: 'We rigorously analyze your academic background, research experience, and long-term career goals to find the absolute best-fit scholarship programs globally.', chips: ['📊 Complete Analysis', '🎯 Goal Alignment'] },
-    { p: 0.50, rot: -3.8, camZ: 16, showIntro: false, tag: 'Step 2', title: 'Smart Shortlisting', body: 'Stop guessing. We use historical data to precisely shortlist universities and professors where your profile has the highest statistical probability of acceptance.', chips: ['🏫 AI Matching', '📈 Highest ROI'] },
-    { p: 0.75, rot: -5.2, camZ: 17, showIntro: false, tag: 'Step 3', title: 'Application & Interview', body: 'Our experts guide you through drafting compelling Statements of Purpose, developing research proposals, and conducting high-pressure mock interviews.', chips: ['📝 Elite SOP Reviews', '🎤 Mock Interviews'] },
+    { p: 0.25, rot: -2.3, camZ: 17, showIntro: false, tag: 'Step 1', title: 'Profile Review', body: 'Organise your academic background, technical work, research experience, constraints, and long-term goals before comparing routes.', chips: ['📊 Profile Context', '🎯 Goal Clarity'] },
+    { p: 0.50, rot: -3.8, camZ: 16, showIntro: false, tag: 'Step 2', title: 'Evidence-Based Shortlisting', body: 'Compare programmes, laboratories, locations, official requirements, and career fit using current source material rather than an acceptance-probability promise.', chips: ['🏫 Programme Fit', '🔎 Official Sources'] },
+    { p: 0.75, rot: -5.2, camZ: 17, showIntro: false, tag: 'Step 3', title: 'Application Preparation', body: 'Prepare programme-specific application documents, research materials, and interview practice against the instructions of the institution or scholarship call.', chips: ['📝 Document Review', '🎤 Interview Practice'] },
     { p: 1.0, rot: -7.48, camZ: 24, showIntro: true, tag: '', title: '', body: '' } // -7.48 = -1.2 - 2PI (A perfect 360 degree spin back to Japan!)
   ];
 

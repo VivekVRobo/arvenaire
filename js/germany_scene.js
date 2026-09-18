@@ -6,6 +6,12 @@
 (function () {
   'use strict';
 
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var reducedCanvas = document.getElementById('de-canvas');
+    if (reducedCanvas) reducedCanvas.style.display = 'none';
+    return;
+  }
+
   /* ─── PHOTO CROSSFADE ─── */
   var photos = document.querySelectorAll('.de-photo');
   var currentPhoto = 0;

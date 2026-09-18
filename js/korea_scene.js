@@ -6,6 +6,12 @@
 (function () {
   'use strict';
 
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var reducedCanvas = document.getElementById('kr-canvas');
+    if (reducedCanvas) reducedCanvas.style.display = 'none';
+    return;
+  }
+
   /* ─────────────────────────────────────────────
      PHOTO BACKGROUND CROSSFADE
      Each section gets its own photo. As the user

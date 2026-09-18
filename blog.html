@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <title>Arvenaire Blog | Scholarship Roadmaps & Career Insights</title>
-<meta name="description" content="Read expert guides on MEXT, DAAD, GKS, German Werkstudent placement, CV writing, and portfolio strategies for engineers.">
-<link rel="canonical" href="https://arvenaire.com/blog">
+<meta name="description" content="Read source-linked guides on MEXT, APS, GKS, German student work, SOP writing, and engineering portfolio preparation.">
+<link rel="canonical" href="https://arvenaire.vercel.app/blog">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;700;900&family=Inter:wght@300;400;500;600;700&family=Cinzel:wght@400;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
@@ -306,6 +306,7 @@ body::after {
   </div>
 </nav>
 
+<main id="main-content">
 <div class="blog-hero">
   <div>
     <p class="section-tag">Pathways & Strategies</p>
@@ -337,7 +338,7 @@ body::after {
         <span>July 08, 2026</span>
       </div>
       <h3>How to Secure the MEXT Scholarship (2027)</h3>
-      <p>Japan's premier government scholarship offers free tuition, flight tickets, and a ¥117,000 monthly stipend. Master the professor outreach and exam stages.</p>
+      <p>The 2027 India Research Students cycle is closed. Review the verified graduate stipend categories, selection dates, and official MEXT source before planning the next intake.</p>
       <button class="blog-btn" onclick="readArticle('mext-guide')">Read Article</button>
     </div>
   </div>
@@ -353,7 +354,7 @@ body::after {
         <span>July 06, 2026</span>
       </div>
       <h3>APS Certificate: Germany Study Visa Requirement</h3>
-      <p>The Akademische Prüfstelle (APS) certificate is mandatory for all Indian students applying to Germany. Learn how to verify documents fast and avoid delays.</p>
+      <p>APS is generally required for relevant qualifications issued by Indian institutions, but exemptions and procedure-specific document rules exist. Start with the official APS checklist.</p>
       <button class="blog-btn" onclick="readArticle('aps-guide')">Read Article</button>
     </div>
   </div>
@@ -361,7 +362,7 @@ body::after {
   <!-- Post 3 (Korea - GKS) -->
   <div class="blog-card" data-cat="gks">
     <div class="blog-img-wrap">
-      <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=600&q=80" alt="Seoul at night" class="blog-img">
+      <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=600&q=80" alt="RGB mechanical keyboard on a desk" class="blog-img">
     </div>
     <div class="blog-card-content">
       <div class="blog-card-meta">
@@ -369,7 +370,7 @@ body::after {
         <span>July 03, 2026</span>
       </div>
       <h3>GKS Graduate Scholarship: The Master Plan</h3>
-      <p>South Korea's Global Korea Scholarship covers full tuition, language training, and living expenses. Discover the difference between Embassy and University tracks.</p>
+      <p>GKS includes scholarship benefits and multiple application tracks, but duration, language training, and detailed conditions depend on the applicable programme and annual call.</p>
       <button class="blog-btn" onclick="readArticle('gks-guide')">Read Article</button>
     </div>
   </div>
@@ -385,7 +386,7 @@ body::after {
         <span>June 28, 2026</span>
       </div>
       <h3>What is a Werkstudent in Germany?</h3>
-      <p>Working student roles pay €12–20/hr and build massive industry experience in Germany. Learn the rules, taxes, and how to position your portfolio for automation.</p>
+      <p>Working-student roles can provide income and industry experience in Germany. Check the current work limits, your residence conditions, and the role itself before budgeting around a job.</p>
       <button class="blog-btn" onclick="readArticle('werkstudent-guide')">Read Article</button>
     </div>
   </div>
@@ -417,7 +418,7 @@ body::after {
         <span>June 18, 2026</span>
       </div>
       <h3>Building a Robotics Portfolio that Recruits</h3>
-      <p>German automation employers screen for proof of skill. Discover how simulator projects, TwinCAT PLC setups, and ROS2 builds prove you can deliver on Day 1.</p>
+      <p>Make your engineering work easy to inspect with simulator projects, PLC examples, ROS2 builds, documentation, and evidence you can explain in an interview.</p>
       <button class="blog-btn" onclick="readArticle('robotics-guide')">Read Article</button>
     </div>
   </div>
@@ -429,25 +430,24 @@ body::after {
   <h2>Want to Evaluate Your Profile? <span class="hero-highlight">Get Free Advice.</span></h2>
   <a href="contact.html" class="btn-primary">Audit My Profile →</a>
 </div>
+</main>
 
 <!-- Article Reader Panel Overlay -->
-<div id="readerOverlay">
-  <div class="ro-backdrop" onclick="closeArticle()"></div>
-  <div class="ro-panel">
+<div id="readerOverlay" role="dialog" aria-modal="true" aria-labelledby="artTitle" aria-describedby="artContent" aria-hidden="true">
+  <div class="ro-backdrop" onclick="closeArticle()" aria-hidden="true"></div>
+  <div class="ro-panel" tabindex="-1">
     <div class="ro-header">
       <div class="ro-logo" style="font-family:'Outfit';font-weight:900;letter-spacing:-0.5px;font-size:1.15rem;color:var(--cs-ink)">Arven<span>aire</span></div>
-      <button class="ro-close" onclick="closeArticle()">×</button>
+      <button class="ro-close" type="button" onclick="closeArticle()" aria-label="Close article reader">×</button>
     </div>
     <div class="ro-body">
-      <div class="ro-meta" id="artMeta">MEXT Scholarship</div>
-      <h2 class="ro-title" id="artTitle">How to Secure the MEXT Scholarship (2027)</h2>
+      <div class="ro-meta" id="artMeta">Guide</div>
+      <h2 class="ro-title" id="artTitle">Article</h2>
       <div class="ro-info-strip">
-        <span>📅 Published: July 08, 2026</span>
-        <span>⏱ Read Time: 6 min read</span>
+        <span id="artDate">Published date</span>
+        <span id="artReadTime">Read time</span>
       </div>
-      <div class="ro-content" id="artContent">
-        <!-- Content will be injected dynamically -->
-      </div>
+      <div class="ro-content" id="artContent"></div>
     </div>
   </div>
 </div>
@@ -474,126 +474,203 @@ function filterBlog(cat, btn) {
 // Articles Database
 const articles = {
   'mext-guide': {
-    meta: 'MEXT Scholarship',
-    title: 'How to Secure the MEXT Scholarship (2027) for Indian Engineers',
+    meta: 'MEXT Scholarship · India',
+    date: 'July 08, 2026',
+    title: 'MEXT Research Students 2027: What the India Cycle Actually Required',
     content: `
-      <p>The Monbukagakusho (MEXT) scholarship is Japan's most prestigious government grant. Covering full tuition, return flight tickets, and providing a monthly stipend of ¥117,000–¥145,000, it offers an incredible pathway to study and work in Japan's advanced robotics, automotive, and mechatronics industries.</p>
-      
-      <h3>1. Choose Your Route: Embassy vs. University</h3>
-      <p>Most Indian engineers apply through the <strong>Embassy Track</strong>. Applications typically open in April/May every year. The selection steps involve document screening, a written exam (English & Japanese language), and a personal interview in New Delhi.</p>
-      
-      <h3>2. The Written Exams</h3>
-      <p>Do not panic about the Japanese exam if you do not speak the language yet. For research student tracks, English proficiency is heavily weighted. However, scoring well on the English test is critical because it acts as the initial cutoff filter.</p>
-      
-      <h3>3. Finding a Supervisor</h3>
-      <p>Once you pass the primary screening at the Embassy, you must contact professors in Japan to secure a "Letter of Provisional Acceptance". Having a solid Research Proposal in areas like ROS2, SLAM, PLC Automation, or Computer Vision makes this step much easier.</p>
+      <p>The Embassy of Japan in India’s 2027 <strong>Research Students</strong> call was a graduate-level route for master’s and doctoral study. For that checked cycle, the monthly scholarship amount was ¥143,000 during preparatory education, ¥144,000 for regular master’s/professional-degree students, and ¥145,000 for doctoral students. Education fees were exempted and round-trip airfare was provided subject to the programme rules.</p>
+      <p><strong>Cycle status:</strong> preliminary applications closed on 15 May 2026. Do not reuse that deadline for a future intake.</p>
+      <h3>1. Use the exact category and year</h3>
+      <p>MEXT has several scholarship categories. A figure or timeline from an undergraduate or older call should not be copied into a graduate Research Students guide. Start with the Embassy of Japan page for the relevant intake.</p>
+      <h3>2. India’s 2027 first screening</h3>
+      <p>The checked India cycle scheduled its written examination for 5 July 2026 and interviews online from 16–19 July 2026. The interview was therefore not a blanket “New Delhi interview” as the previous article stated.</p>
+      <h3>3. Research placement comes later in the process</h3>
+      <p>Applicants who advance should follow the current MEXT instructions on research plans and provisional acceptance. Supervisor outreach should be based on research fit and the official procedure, not a generic mass-email target.</p>
+      <p><a href="https://www.in.emb-japan.go.jp/Education/Research_Student.html" target="_blank" rel="noopener noreferrer">Official source: Embassy of Japan in India — Research Students for 2027 →</a></p>
     `
   },
   'aps-guide': {
-    meta: 'DAAD & Germany',
-    title: 'Akademische Prüfstelle (APS) Certificate: Germany Visa Mastery',
+    meta: 'APS & Germany',
+    date: 'July 06, 2026',
+    title: 'APS India: Requirements, Exemptions, Documents, and Timing',
     content: `
-      <p>Since November 2022, the Akademische Prüfstelle (APS) certificate is a mandatory document for all Indian students applying for a Germany Study Visa. It verifies the authenticity of your academic documents before you submit your visa application.</p>
-      
-      <h3>1. When to Start</h3>
-      <p>Start early. The APS verification process currently takes anywhere from <strong>4 to 8 weeks</strong>. If you are targeting the Winter Semester (which starts in October), you should ideally apply for your APS certificate by December or January of the previous year.</p>
-      
-      <h3>2. Document Checklist</h3>
-      <p>You need to submit printed, notarized copies of your university transcripts, degree certificates, secondary education records, and proof of English/German proficiency. Having clean, consistent transcripts is essential for smooth processing.</p>
-      
-      <h3>3. Verification Process</h3>
-      <p>The APS team contacts your Indian university directly. Ensure your university registrar answers verification emails promptly, as delay in registrar replies is the number one cause of APS backlogs.</p>
+      <p>APS India verifies academic documents and educational qualifications issued by Indian educational institutions. The APS certificate is <strong>generally required</strong> as part of the German student-visa documentation process, but the applicable procedure depends on the qualification and study route.</p>
+      <h3>1. Check whether APS applies to you</h3>
+      <p>APS India lists possible exemptions, including some qualifications not issued by Indian institutions, certain PhD/postdoctoral cases, international secondary-school qualifications, and qualifying German/EU public-funded scholarship cases. Use the APS requirements quiz and the checklist for your procedure.</p>
+      <h3>2. Do not assume every copy needs notarization</h3>
+      <p>Documents issued in English or bilingual format generally do not need notarization. If a document is issued only in an Indian regional language and translated into English, APS says the translation must be notarized.</p>
+      <h3>3. Do not plan around a fixed processing window</h3>
+      <p>APS states that processing time depends on application volume and responses from institutions and that it cannot provide one fixed processing time for every case. Apply using the current checklist rather than relying on a “4–8 week” promise.</p>
+      <p><a href="https://aps-india.de/faqs/" target="_blank" rel="noopener noreferrer">Official source: APS India FAQs →</a></p>
     `
   },
   'gks-guide': {
     meta: 'GKS Scholarship',
-    title: 'GKS Graduate Scholarship: Step-by-Step Selection Master Plan',
+    date: 'July 03, 2026',
+    title: 'GKS Graduate Scholarship: Read the Track Before You Plan',
     content: `
-      <p>The Global Korea Scholarship (GKS) is South Korea's flagship government grant, designed to provide international students with full tuition coverage, return airfare, settlement allowances, and a monthly stipend of 1,000,000 KRW.</p>
-      
-      <h3>1. Embassy Track vs. University Track</h3>
-      <p>Under the Embassy Track, you apply to the Korean Embassy in India and can select up to three universities. Under the University Track, you apply to a single Korean university directly. The University Track is generally less competitive but limits your choices.</p>
-      
-      <h3>2. The Mandatory Language Year</h3>
-      <p>All GKS scholars spend their first year learning Korean at a local language institute. Achieving TOPIK Level 3 during this year is mandatory to transition into your Master's or PhD coursework.</p>
-      
-      <h3>3. Structuring Your Personal Statement</h3>
-      <p>The personal statement should detail your academic goals, research interests, and why Korea's tech ecosystem (like Samsung, Hyundai, and LG robotics labs) fits your career aspirations.</p>
+      <p>Study in Korea lists airfare, Korean-language training costs, tuition, and monthly allowances among GKS scholarship benefits. Exact amounts, university choices, deadlines, and exceptions should come from the applicable annual guidelines.</p>
+      <h3>1. Embassy and university routes are different</h3>
+      <p>The application route changes where you submit and which choices are available. Do not treat one route as “less competitive” without current, comparable applicant and selection data.</p>
+      <h3>2. The language year is not universal across every graduate track</h3>
+      <p>The general graduate structure includes Korean-language training plus two years for a master’s or three years for a doctorate. Study in Korea also identifies specialised tracks such as the Global Network master’s route without Korean-language training. Check the programme you are actually applying to.</p>
+      <h3>3. Treat the annual call as controlling</h3>
+      <p>Eligibility, required documents, participating universities, benefits, and selection timing can change. Build the personal statement around your genuine academic and career rationale rather than a generic scholarship formula.</p>
+      <p><a href="https://www.studyinkorea.go.kr/en/plan/scholarship.do" target="_blank" rel="noopener noreferrer">Official source: Study in Korea — Scholarships →</a></p>
     `
   },
   'werkstudent-guide': {
     meta: 'German Careers',
-    title: 'What is a Werkstudent in Germany? A Guide for Indian Engineers',
+    date: 'June 28, 2026',
+    title: 'Working While Studying in Germany: Rules Before Assumptions',
     content: `
-      <p>A <strong>Werkstudent</strong> (working student) role is a unique German employment model that allows university students to work up to 20 hours per week during semesters (and 40 hours during breaks) in roles related to their field of study.</p>
-      
-      <h3>1. The Financial Benefits</h3>
-      <p>Werkstudent positions pay between €12 and €20 per hour. This is more than enough to cover your rent, health insurance, and monthly living expenses, completely removing the need to rely on a blocked account after your first year.</p>
-      
-      <h3>2. The Career Advantage</h3>
-      <p>In Germany, practical proof is valued above university brands. Having 1-2 years of Werkstudent experience in automation (PLC programming, hardware testing, etc.) almost guarantees a full-time job offer upon graduation.</p>
-      
-      <h3>3. How to Apply</h3>
-      <p>Build a German ATS CV and write cover letters that link your university projects to the company's job requirements. Focus on local companies in engineering hubs like Munich, Stuttgart, and Berlin.</p>
+      <p>International students can use part-time work to gain experience and earn income, but a job should not be treated as guaranteed financing or guaranteed post-graduation employment.</p>
+      <h3>1. Know the current work limit</h3>
+      <p>Germany’s official “Make it in Germany” portal says third-country students may work up to 140 full days or 280 half-days per year, or alternatively up to 20 hours per week during the lecture period. Specific student-assistant rules and residence conditions can differ.</p>
+      <h3>2. Income does not automatically replace your financing requirement</h3>
+      <p>Pay varies by employer, role, location, and experience. The official portal notes that student income may sometimes be usable as proof of financing for residence renewal if the relevant conditions are met; applicants should confirm their own case with the competent foreigners authority.</p>
+      <h3>3. Experience helps, but it is not a job guarantee</h3>
+      <p>A relevant working-student role can strengthen technical evidence, references, and local experience. Full-time hiring still depends on the employer, role, performance, labour market, language, and work-authorisation conditions.</p>
+      <p><a href="https://www.make-it-in-germany.com/en/study-vocational-training/studies-in-germany/work" target="_blank" rel="noopener noreferrer">Official source: Make it in Germany — Study and work →</a></p>
     `
   },
   'sop-guide': {
-    meta: 'Admissions Strategy',
-    title: 'How to Write a Winning Statement of Purpose (SOP) for Europe',
+    meta: 'Admissions Writing',
+    date: 'June 24, 2026',
+    title: 'Statement of Purpose: A Flexible Evidence-Based Framework',
     content: `
-      <p>Your Statement of Purpose (SOP) is the most critical qualitative part of your university application. Admissions committees at top European universities (like TU Munich, RWTH Aachen, or Chalmers) screen hundreds of SOPs daily. Here is how to make yours stand out.</p>
-      
-      <h3>1. The 4-Part Structure</h3>
+      <p>A Statement of Purpose should follow the instructions of the programme you are applying to. There is no universal percentage formula that every admissions committee uses.</p>
+      <h3>1. A practical four-part framework</h3>
       <ul>
-        <li><strong>Part 1: The Hook (15%)</strong> — State your immediate academic goal and what sparked your interest in this specific engineering niche.</li>
-        <li><strong>Part 2: Academic Background & Project Proof (45%)</strong> — Detail your projects, papers, or internships. Focus on technical metrics (e.g., "programmed a ROS2 robot with 92% mapping accuracy").</li>
-        <li><strong>Part 3: Why This University & Program (25%)</strong> — Mention specific research labs, courses, or professors you want to work with. Avoid generic compliments.</li>
-        <li><strong>Part 4: Career Vision (15%)</strong> — Detail your immediate next steps after graduating (e.g. joining an R&D automation team in Germany).</li>
+        <li><strong>Goal and context:</strong> explain the academic or technical direction you want to pursue.</li>
+        <li><strong>Evidence:</strong> connect relevant coursework, projects, research, internships, or work experience to that direction.</li>
+        <li><strong>Programme fit:</strong> identify specific courses, labs, methods, or research themes that genuinely match your plan.</li>
+        <li><strong>Next step:</strong> explain what you intend to do with the training after the programme.</li>
       </ul>
-      
-      <h3>2. Avoid Placeholders</h3>
-      <p>Never say "Since my childhood, I loved robots." Instead, start with a specific technical challenge you faced in your final year project.</p>
+      <h3>2. Use only metrics you can substantiate</h3>
+      <p>Technical metrics can make project evidence clearer when they were actually measured and you can explain the method. Never invent accuracy, performance, revenue, user, or impact figures to make a project sound stronger.</p>
+      <h3>3. Programme instructions override templates</h3>
+      <p>If the university specifies a prompt, word limit, format, or required question, follow it even when it conflicts with a generic template.</p>
     `
   },
   'robotics-guide': {
     meta: 'Robotics Portfolio',
-    title: 'Building a Robotics & Automation Portfolio that Recruits',
+    date: 'June 18, 2026',
+    title: 'Building a Robotics & Automation Portfolio Recruiters Can Inspect',
     content: `
-      <p>When applying for Werkstudent or entry-level automation roles in Germany, generic resume resume bullet points will not get you interviews. European employers look for proof-of-work. Here is how to structure a robotics portfolio.</p>
-      
-      <h3>1. Document Simulation Projects</h3>
-      <p>If you do not have access to expensive industrial robots, use simulators. Build robot mapping, navigation, or control loops in Gazebo, Webots, or MATLAB, and publish the code on GitHub.</p>
-      
-      <h3>2. TwinCAT & PLC Programming</h3>
-      <p>For automation engineering, knowledge of TwinCAT 3, TIA Portal, or CODESYS is highly valued. Build a simulated packaging line, write structured text code, and create a video showing the factory simulation running.</p>
-      
-      <h3>3. Write Detailed GitHub READMEs</h3>
-      <p>Include system architecture diagrams, GIFs of your simulation, a list of libraries used, and clear installation instructions. A recruiter should be able to understand what you built in less than 30 seconds.</p>
+      <p>For robotics and automation roles, generic résumé bullets make technical work difficult to evaluate. A useful portfolio shows what you built, how it works, what you tested, and what evidence supports the result.</p>
+      <h3>1. Document simulation projects</h3>
+      <p>If you do not have access to industrial hardware, simulation can still demonstrate architecture, algorithms, debugging, and verification. Publish reproducible code and explain the limitations of the simulation.</p>
+      <h3>2. Show industrial-control work clearly</h3>
+      <p>For PLC or automation projects, document the control objective, I/O model, state logic, safety assumptions, test cases, and a short demonstration. Use tools such as TwinCAT, TIA Portal, or CODESYS only where they fit the project.</p>
+      <h3>3. Write evidence-first READMEs</h3>
+      <p>Include an architecture diagram, setup steps, dependencies, representative results, known limitations, and screenshots or short clips. Make it easy for a reviewer to understand what is real, simulated, measured, and still incomplete.</p>
     `
   }
-};
+}
+let articleTrigger = null;
+let activeArticleId = null;
 
-function readArticle(id) {
-  const art = articles[id];
-  if (!art) return;
-  
-  document.getElementById('artMeta').textContent = art.meta;
-  document.getElementById('artTitle').textContent = art.title;
-  document.getElementById('artContent').innerHTML = art.content;
-  
-  document.getElementById('readerOverlay').classList.add('show');
-  document.body.style.overflow = 'hidden';
+function blogSetBackgroundInert(isInert) {
+  Array.from(document.body.children).forEach(el => {
+    if (el.id === 'readerOverlay' || el.tagName === 'SCRIPT') return;
+    el.inert = isInert;
+  });
 }
 
-function closeArticle() {
-  document.getElementById('readerOverlay').classList.remove('show');
+function estimateReadTime(html) {
+  const tmp = document.createElement('div');
+  tmp.innerHTML = html;
+  const words = (tmp.textContent || '').trim().split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.ceil(words / 220));
+}
+
+function readArticle(id, options = {}) {
+  const art = articles[id];
+  if (!art) return;
+  articleTrigger = options.restoreFocus === false ? articleTrigger : document.activeElement;
+  activeArticleId = id;
+
+  document.getElementById('artMeta').textContent = art.meta;
+  document.getElementById('artTitle').textContent = art.title;
+  document.getElementById('artDate').textContent = 'Published: ' + art.date;
+  document.getElementById('artReadTime').textContent = 'Read time: ' + estimateReadTime(art.content) + ' min';
+  document.getElementById('artContent').innerHTML = art.content;
+
+  const overlay = document.getElementById('readerOverlay');
+  overlay.classList.add('show');
+  overlay.setAttribute('aria-hidden', 'false');
+  blogSetBackgroundInert(true);
+  document.body.style.overflow = 'hidden';
+  requestAnimationFrame(() => overlay.querySelector('.ro-close').focus());
+
+  if (!options.fromHistory) {
+    const url = new URL(window.location.href);
+    url.searchParams.set('article', id);
+    history.pushState({article:id}, '', url);
+  }
+}
+
+function closeArticle(options = {}) {
+  const overlay = document.getElementById('readerOverlay');
+  if (!overlay.classList.contains('show')) return;
+  overlay.classList.remove('show');
+  overlay.setAttribute('aria-hidden', 'true');
+  blogSetBackgroundInert(false);
   document.body.style.overflow = '';
+  activeArticleId = null;
+
+  if (!options.fromHistory) {
+    const url = new URL(window.location.href);
+    url.searchParams.delete('article');
+    history.pushState({}, '', url);
+  }
+  if (articleTrigger && typeof articleTrigger.focus === 'function') articleTrigger.focus();
+}
+
+function syncArticleFromUrl() {
+  const id = new URLSearchParams(window.location.search).get('article');
+  if (id && articles[id]) {
+    readArticle(id, {fromHistory:true, restoreFocus:false});
+  } else if (document.getElementById('readerOverlay').classList.contains('show')) {
+    closeArticle({fromHistory:true});
+  }
 }
 
 document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') closeArticle();
+  const overlay = document.getElementById('readerOverlay');
+  if (!overlay.classList.contains('show')) return;
+  if (e.key === 'Escape') { e.preventDefault(); closeArticle(); return; }
+  if (e.key !== 'Tab') return;
+  const focusable = Array.from(overlay.querySelectorAll('button:not([disabled]), a[href]')).filter(el => el.offsetParent !== null);
+  if (!focusable.length) return;
+  const first=focusable[0], last=focusable[focusable.length-1];
+  if (e.shiftKey && document.activeElement===first) { e.preventDefault(); last.focus(); }
+  else if (!e.shiftKey && document.activeElement===last) { e.preventDefault(); first.focus(); }
 });
+
+window.addEventListener('popstate', syncArticleFromUrl);
+syncArticleFromUrl();
 </script>
+<footer class="site-legal-footer">
+  <div class="legal-nav">
+    <a href="index.html">Home</a>
+    <a href="germany.html">Germany</a>
+    <a href="japan.html">Japan</a>
+    <a href="korea.html">South Korea</a>
+    <a href="resources.html">Resources</a>
+    <a href="blog.html">Blog</a>
+    <a href="contact.html">Contact</a>
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="terms.html">Terms of Service</a>
+    <a href="refunds.html">Refund Policy</a>
+    <a href="disclaimer.html">Educational Disclaimer</a>
+  </div>
+  <div class="legal-disclaimer">
+    <p>Scholarship, immigration, study, and employment rules can change. Each high-stakes guide links to the controlling official source where applicable; verify the current version before acting.</p>
+  </div>
+  <p>&copy; 2026 ARVENAIRE. All rights reserved.</p>
+</footer>
 <script src="js/transitions.js"></script>
 </body>
 </html>

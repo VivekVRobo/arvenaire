@@ -411,6 +411,17 @@ body::after {
 }
 .csm-submit:hover { background: var(--cs-accent); }
 .csm-submit:disabled { cursor: wait; opacity: 0.72; }
+.csm-direct {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 100%; margin-top: 10px; padding: 13px 18px;
+  border: 1px solid var(--cs-border); background: transparent; color: var(--cs-ink);
+  font-weight: 700; font-size: .8rem; letter-spacing: .05em; text-decoration: none;
+}
+.csm-direct:hover, .csm-direct:focus-visible { border-color: var(--cs-accent); color: var(--cs-accent); }
+.csm-privacy { margin-top: 14px; font-size: .76rem; line-height: 1.55; color: var(--cs-muted); }
+.csm-close:focus-visible, .csm-submit:focus-visible, .csm-email-form input:focus-visible, .csm-direct:focus-visible {
+  outline: 3px solid var(--cs-accent); outline-offset: 3px;
+}
 .csm-error { display: none; margin-top: 16px; color: #9c1c22; font-size: 0.85rem; font-weight: 600; line-height: 1.5; }
 
 .csm-success { display: none; margin-top: 16px; }
@@ -546,6 +557,7 @@ body::after {
     grid-template-columns: 1fr;
   }
 }
+.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important;}
 </style>
 </head>
 <body>
@@ -600,7 +612,7 @@ body::after {
 <!-- Stats -->
 <div class="resources-stats">
   <div class="rs-stat"><div class="rs-num">13</div><div class="rs-label">Free Resources</div></div>
-  <div class="rs-stat rs-feat"><div class="rs-num">500+</div><div class="rs-label">Downloads</div></div>
+  <div class="rs-stat rs-feat"><div class="rs-num">13</div><div class="rs-label">Active PDFs</div></div>
   <div class="rs-stat"><div class="rs-num">100%</div><div class="rs-label">Core Guides Free</div></div>
 </div>
 
@@ -706,7 +718,7 @@ body::after {
         <div class="resource-tag">SOP Templates</div>
         <h3>Scholarship-Winning SOP Template Pack</h3>
         <p>3 proven SOP frameworks for MEXT, DAAD, and CSC scholarships. Includes annotated examples of successful SOPs from accepted students.</p>
-        <div class="resource-dl-count">⬇ 3,241 downloads</div>
+        <div class="resource-dl-count">PDF · Free resource</div>
         <button class="resource-btn" onclick="showDownload('Scholarship-Winning SOP Template Pack', '📝', 'downloads/01_SOP_Template_Pack.pdf')">Download PDF</button>
       </div>
 
@@ -716,7 +728,7 @@ body::after {
         <div class="resource-tag">Email Templates</div>
         <h3>Cold Email to Professor — 5 Templates</h3>
         <p>Word-for-word email templates to contact potential supervisors in Japan, Germany, South Korea, and Australia. Personalisation guide included.</p>
-        <div class="resource-dl-count">⬇ 5,892 downloads</div>
+        <div class="resource-dl-count">PDF · Free resource</div>
         <button class="resource-btn" onclick="showDownload('Cold Email to Professor — 5 Templates', '📧', 'downloads/02_Cold_Email_Templates.pdf')">Download PDF</button>
       </div>
 
@@ -726,7 +738,7 @@ body::after {
         <div class="resource-tag">Checklists</div>
         <h3>MEXT Scholarship Complete Checklist 2026</h3>
         <p>Every document, deadline, and selection step for the MEXT Embassy Route — in one organized master checklist for Indian students.</p>
-        <div class="resource-dl-count">⬇ 114 downloads</div>
+        <div class="resource-dl-count">PDF · Free resource</div>
         <button class="resource-btn" onclick="showDownload('MEXT Scholarship Complete Checklist 2026', '✅', 'downloads/03_MEXT_Scholarship_Checklist.pdf')">Download PDF</button>
       </div>
 
@@ -736,7 +748,7 @@ body::after {
         <div class="resource-tag">Research Proposal</div>
         <h3>Research Proposal Template (PhD Scholarships)</h3>
         <p>A structured template for writing research proposals for MEXT, GKS, RTP, and DAAD PhD scholarships — with annotated examples.</p>
-        <div class="resource-dl-count">⬇ 2,441 downloads</div>
+        <div class="resource-dl-count">PDF · Free resource</div>
         <button class="resource-btn" onclick="showDownload('Research Proposal Template (PhD Scholarships)', '🔬', 'downloads/09_Research_Proposal_Template.pdf')">Download PDF</button>
       </div>
 
@@ -746,7 +758,7 @@ body::after {
         <div class="resource-tag">Comparison Tool</div>
         <h3>5-Country Scholarship Comparison Sheet</h3>
         <p>Side-by-side comparison of Japan, Germany, China, South Korea, and Australia — scholarships, stipends, costs, and PR pathways.</p>
-        <div class="resource-dl-count">⬇ 167 downloads</div>
+        <div class="resource-dl-count">PDF · Free resource</div>
         <button class="resource-btn" onclick="showDownload('5-Country Scholarship Comparison Sheet', '📊', 'downloads/08_5_Country_Scholarship_Comparison.pdf')">Download PDF</button>
       </div>
     </div>
@@ -765,7 +777,7 @@ body::after {
         <div class="resource-tag">Germany CV</div>
         <h3>Germany Engineering CV & Profile Guide (2026)</h3>
         <p>Build a German ATS CV, tighten your LinkedIn profile, and present automation, robotics, manufacturing, or embedded projects clearly.</p>
-        <div class="resource-dl-count">⬇ 247 downloads</div>
+        <div class="resource-dl-count">PDF · Free resource</div>
         <button class="resource-btn" onclick="showDownload('Germany Engineering CV & Profile Guide (2026)', '🇩🇪', 'downloads/10_Germany_Engineering_CV_Profile_Guide_2026.pdf')">Download PDF</button>
       </div>
 
@@ -775,7 +787,7 @@ body::after {
         <div class="resource-tag">Skills Roadmap</div>
         <h3>Germany Engineering Skills Roadmap (2026)</h3>
         <p>Map the skills German employers screen for: PLCs, ROS2, embedded systems, CAD, control systems, Python, and practical proof.</p>
-        <div class="resource-dl-count">⬇ 203 downloads</div>
+        <div class="resource-dl-count">PDF · Free resource</div>
         <button class="resource-btn" onclick="showDownload('Germany Engineering Skills Roadmap (2026)', '🛠️', 'downloads/11_Germany_Engineering_Skills_Roadmap_2026.pdf')">Download PDF</button>
       </div>
 
@@ -785,7 +797,7 @@ body::after {
         <div class="resource-tag">Automation Roadmap</div>
         <h3>Manufacturing & Automation Career Roadmap</h3>
         <p>Create portfolio projects around TwinCAT, TIA Portal, ROS2, PLC simulation, IoT, sensors, and manufacturing systems.</p>
-        <div class="resource-dl-count">⬇ 187 downloads</div>
+        <div class="resource-dl-count">PDF · Free resource</div>
         <button class="resource-btn" onclick="showDownload('Manufacturing & Automation Career Roadmap', '⚙️', 'downloads/12_Germany_Manufacturing_Automation_Roadmap_2026.pdf')">Download PDF</button>
       </div>
 
@@ -795,7 +807,7 @@ body::after {
         <div class="resource-tag">Europe Roadmap</div>
         <h3>India to Europe Study & Career Roadmap</h3>
         <p>Plan the route from Indian engineering studies to European Master's applications, visa files, job search, and early career positioning.</p>
-        <div class="resource-dl-count">⬇ 191 downloads</div>
+        <div class="resource-dl-count">PDF · Free resource</div>
         <button class="resource-btn" onclick="showDownload('India to Europe Study & Career Roadmap', '🇪🇺', 'downloads/15_India_to_Europe_Engineering_Career_Roadmap.pdf')">Download PDF</button>
       </div>
 
@@ -805,7 +817,7 @@ body::after {
         <div class="resource-tag">Werkstudent</div>
         <h3>Germany Werkstudent Quick Checklist (2026)</h3>
         <p>Prepare the CV, LinkedIn profile, project proof, company shortlist, and weekly application routine needed to apply this week.</p>
-        <div class="resource-dl-count">⬇ 128 downloads</div>
+        <div class="resource-dl-count">PDF · Free resource</div>
         <button class="resource-btn" onclick="showDownload('Germany Werkstudent Quick Checklist (2026)', 'DE', 'downloads/13_Germany_Werkstudent_Checklist_2026.pdf')">Download PDF</button>
       </div>
 
@@ -815,7 +827,7 @@ body::after {
         <div class="resource-tag">Werkstudent</div>
         <h3>Germany Werkstudent Starter Guide (2026)</h3>
         <p>Understand working-student roles, where to search, how to contact companies, and how to convert campus entry into industrial experience.</p>
-        <div class="resource-dl-count">⬇ 136 downloads</div>
+        <div class="resource-dl-count">PDF · Free resource</div>
         <button class="resource-btn" onclick="showDownload('Germany Werkstudent Starter Guide (2026)', 'DE', 'downloads/14_Germany_Werkstudent_Guide_2026.pdf')">Download PDF</button>
       </div>
 
@@ -825,7 +837,7 @@ body::after {
         <div class="resource-tag">Job Hunter</div>
         <h3>Graduate & PhD Job Hunter Roadmap (Europe)</h3>
         <p>Reposition academic projects, thesis work, and research experience into industry language for Germany and broader Europe.</p>
-        <div class="resource-dl-count">⬇ 119 downloads</div>
+        <div class="resource-dl-count">PDF · Free resource</div>
         <button class="resource-btn" onclick="showDownload('Graduate & PhD Job Hunter Roadmap (Europe)', 'EU', 'downloads/16_Graduate_PhD_Job_Hunter_Roadmap_Europe.pdf')">Download PDF</button>
       </div>
 
@@ -835,7 +847,7 @@ body::after {
         <div class="resource-tag">Remote Roles</div>
         <h3>Remote Engineering Roles Guide (2026)</h3>
         <p>Identify engineering roles that can be done remotely and package skills for global hiring without overstating your profile.</p>
-        <div class="resource-dl-count">⬇ 144 downloads</div>
+        <div class="resource-dl-count">PDF · Free resource</div>
         <button class="resource-btn" onclick="showDownload('Remote Engineering Roles Guide (2026)', 'GL', 'downloads/17_Remote_Engineering_Guide_2026.pdf')">Download PDF</button>
       </div>
     </div>
@@ -850,21 +862,23 @@ body::after {
 </div>
 
 <!-- Download Modal -->
-<div id="comingSoonModal">
-  <div class="csm-backdrop" onclick="closeModal()"></div>
-  <div class="csm-card">
-    <button class="csm-close" onclick="closeModal()">×</button>
-    <span class="csm-emoji" id="csmEmoji">📝</span>
-    <div class="csm-title">Download Resource</div>
-    <div class="csm-name" id="csmName">Scholarship-Winning SOP Template Pack</div>
-    <p class="csm-desc">Enter your email address to request access. Your download will begin after we confirm your request.</p>
+<div id="comingSoonModal" role="dialog" aria-modal="true" aria-labelledby="csmTitle" aria-describedby="csmDesc" aria-hidden="true">
+  <div class="csm-backdrop" onclick="closeModal()" aria-hidden="true"></div>
+  <div class="csm-card" tabindex="-1">
+    <button class="csm-close" type="button" onclick="closeModal()" aria-label="Close download dialog">×</button>
+    <span class="csm-emoji" id="csmEmoji" aria-hidden="true">📝</span>
+    <div class="csm-title" id="csmTitle">Download Resource</div>
+    <div class="csm-name" id="csmName">Resource PDF</div>
+    <p class="csm-desc" id="csmDesc">Download directly without sharing an email, or enter your email if you want Arvenaire to record the resource request.</p>
     <form class="csm-email-form" id="csmForm" onsubmit="submitDownload(event)">
-      <input type="email" id="csmEmail" placeholder="Enter your email address..." aria-describedby="csmError" required>
-      <button type="submit" class="csm-submit">Confirm & Download PDF →</button>
+      <label for="csmEmail" class="sr-only">Email address</label>
+      <input type="email" id="csmEmail" name="email" placeholder="Email address..." aria-describedby="csmPrivacy csmError" required>
+      <button type="submit" class="csm-submit">Submit Email &amp; Download →</button>
     </form>
+    <a href="#" id="directDownloadLink" class="csm-direct" download>Download without email →</a>
+    <p class="csm-privacy" id="csmPrivacy">An email submitted here is used to process this resource request. It is not consent to unrelated marketing. See the <a href="privacy.html">Privacy Policy</a>.</p>
     <div class="csm-success" id="csmSuccess">
-      <p>✅ Your request was confirmed. Your download should start automatically.</p>
-      <p style="margin-top: 14px; font-size: 0.8rem; color: var(--cs-muted)">If it does not start, <a href="#" id="directDownloadLink" style="color: var(--c-primary); text-decoration: underline" download>download the PDF here</a>.</p>
+      <p>Request confirmed. Your download should start automatically.</p>
     </div>
     <p class="csm-error" id="csmError" role="alert" aria-live="assertive"></p>
   </div>
@@ -936,9 +950,18 @@ function clearResSearch() {
 })();
 
 let currentFileUrl = '';
+let downloadTrigger = null;
+
+function setDownloadBackgroundInert(isInert) {
+  Array.from(document.body.children).forEach(el => {
+    if (el.id === 'comingSoonModal' || el.tagName === 'SCRIPT') return;
+    el.inert = isInert;
+  });
+}
 
 function showDownload(name, emoji, fileUrl) {
   currentFileUrl = fileUrl;
+  downloadTrigger = document.activeElement;
   document.getElementById('csmName').textContent = name;
   document.getElementById('csmEmoji').textContent = emoji;
   document.getElementById('csmEmail').value = '';
@@ -953,13 +976,22 @@ function showDownload(name, emoji, fileUrl) {
   directLink.href = fileUrl;
   directLink.setAttribute('download', fileUrl.split('/').pop());
 
-  document.getElementById('comingSoonModal').classList.add('show');
+  const modal = document.getElementById('comingSoonModal');
+  modal.classList.add('show');
+  modal.setAttribute('aria-hidden', 'false');
+  setDownloadBackgroundInert(true);
   document.body.style.overflow = 'hidden';
+  requestAnimationFrame(() => document.getElementById('csmEmail').focus());
 }
 
 function closeModal() {
-  document.getElementById('comingSoonModal').classList.remove('show');
+  const modal = document.getElementById('comingSoonModal');
+  if (!modal.classList.contains('show')) return;
+  modal.classList.remove('show');
+  modal.setAttribute('aria-hidden', 'true');
+  setDownloadBackgroundInert(false);
   document.body.style.overflow = '';
+  if (downloadTrigger && typeof downloadTrigger.focus === 'function') downloadTrigger.focus();
 }
 
 async function submitDownload(e) {
@@ -1002,17 +1034,6 @@ async function submitDownload(e) {
       throw new Error(result.message || 'The request could not be confirmed.');
     }
 
-    try {
-      const email = emailInput.value.trim();
-      const leads = JSON.parse(localStorage.getItem('scholar_leads') || '[]');
-      if (!leads.includes(email)) {
-        leads.push(email);
-        localStorage.setItem('scholar_leads', JSON.stringify(leads));
-      }
-    } catch (storageError) {
-      console.warn('Local lead storage was unavailable:', storageError);
-    }
-
     form.style.display = 'none';
     document.getElementById('csmSuccess').style.display = 'block';
 
@@ -1024,16 +1045,30 @@ async function submitDownload(e) {
     document.body.removeChild(link);
   } catch (err) {
     console.error('Resource request error:', err);
-    errorEl.textContent = 'We could not confirm your request. Please check your connection and try again.';
+    errorEl.textContent = 'The email request could not be confirmed. You can retry or use “Download without email” below.';
     errorEl.style.display = 'block';
-    emailInput.focus();
+    document.getElementById('directDownloadLink').focus();
   } finally {
     submitBtn.disabled = false;
     submitBtn.textContent = originalText;
   }
 }
 
-document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+document.addEventListener('keydown', (e) => {
+  const modal = document.getElementById('comingSoonModal');
+  if (!modal.classList.contains('show')) return;
+  if (e.key === 'Escape') { e.preventDefault(); closeModal(); return; }
+  if (e.key !== 'Tab') return;
+  const focusable = Array.from(modal.querySelectorAll('button:not([disabled]), input:not([disabled]), a[href]'))
+    .filter(el => el.offsetParent !== null);
+  if (!focusable.length) return;
+  const first = focusable[0], last = focusable[focusable.length - 1];
+  if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+  else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+});
+document.getElementById('directDownloadLink').addEventListener('click', () => {
+  setTimeout(closeModal, 0);
+});
 </script>
 <footer class="site-legal-footer">
   <div class="legal-nav">

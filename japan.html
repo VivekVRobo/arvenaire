@@ -1066,20 +1066,6 @@ a { text-decoration: none; color: inherit; }
 
 <!-- ════════ SCRIPTS ════════ -->
 <script>
-/* ── MEXT Countdown ── */
-(function() {
-  var D = new Date('2027-05-31T23:59:00+05:30');
-  function upd() {
-    var diff = D - new Date();
-    if (diff <= 0) { document.getElementById('mext-cd').innerHTML='<div style="color:#FF2D2D">CLOSED</div>'; return; }
-    document.getElementById('cd-d').textContent = String(Math.floor(diff/86400000)).padStart(2,'0');
-    document.getElementById('cd-h').textContent = String(Math.floor((diff%86400000)/3600000)).padStart(2,'0');
-    document.getElementById('cd-m').textContent = String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
-    document.getElementById('cd-s').textContent = String(Math.floor((diff%60000)/1000)).padStart(2,'0');
-  }
-  upd(); setInterval(upd, 1000);
-})();
-
 /* ── FAQ ── */
 function toggleFaq(btn) {
   var item = btn.closest('.faq-item'), ans = item.querySelector('.faq-a'), arrow = btn.querySelector('.faq-arrow');

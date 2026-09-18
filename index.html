@@ -699,6 +699,11 @@ html,body{
     window.startJapanDive = () => { window.location.href = 'japan.html'; };
   };
 
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    enableStaticFallback('reduced motion preference');
+    return;
+  }
+
   if (!window.THREE) {
     enableStaticFallback('Three.js unavailable');
     return;

@@ -1081,7 +1081,7 @@ html,body{
     }
   });
   // Show scroll hint initially
-  setTimeout(() => document.getElementById('scroll-hint').classList.add('show'), 1500);
+  setTimeout(() => document.getElementById('scroll-hint')?.classList.add('show'), 1500);
 
   (function loop(){
     requestAnimationFrame(loop);

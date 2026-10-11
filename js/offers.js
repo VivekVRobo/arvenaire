@@ -6,14 +6,14 @@
 const ARVENAIRE_OFFERS = {
   // Tier 1: DIY Execution Kit
   kit: {
-    name: "Germany Automation & Robotics Transition Kit (2026)",
+    name: "Germany Automation & Robotics Transition Kit",
     version: "1.2 FINAL",
     price: "₹499",
     numericPrice: 499,
     currency: "INR",
     url: "https://topmate.io/vivekvrobo/2291780?utm_source=arvenaire&utm_medium=website&utm_campaign=germany_transition&utm_content=kit",
-    badge: "2026 Action Kit",
-    note: "Editable ATS CV pack, 30-company tracker, outreach scripts, four portfolio blueprints, four GitHub README templates, official-source verification, CV bullet bank, German search terms, and a 14-day sprint."
+    badge: "v1.2 FINAL",
+    note: "Two editable German ATS CV files, a 30-company tracker, recruiter and hiring-manager scripts, four portfolio blueprints, four GitHub README templates, Germany checklist, source registry, CV bullet examples, German/English job-search keywords, and a 14-day sprint."
   },
 
   // Tier 2: Personalized 1-on-1 Strategy Session + Kit Included
@@ -25,8 +25,8 @@ const ARVENAIRE_OFFERS = {
     duration: "120 minutes",
     url: "https://topmate.io/vivekvrobo/2291828?utm_source=arvenaire&utm_medium=website&utm_campaign=germany_transition&utm_content=strategy_session",
     badge: "1-on-1 Personalized Advisory",
-    bonus: "Includes complete ₹499 Transition Kit automatically",
-    note: "120-minute 1-on-1 consultation covering profile review, university strategy, CV positioning, and Werkstudent roadmap."
+    bonus: "Includes the complete Germany Automation & Robotics Transition Kit v1.2 FINAL",
+    note: "120-minute video meeting covering profile and target-role assessment, study or direct-career positioning, CV/LinkedIn review, portfolio gaps, employer and Werkstudent outreach strategy, and an action plan."
   }
 };
 

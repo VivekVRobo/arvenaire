@@ -1,0 +1,4 @@
+downloads/*.pdf
+# Superseded legacy scripts with unsupported claims; no current HTML entrypoint imports them.
+js/main.js
+js/data.js

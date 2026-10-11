@@ -66,6 +66,10 @@ html,body{
   background: #08090D;
   font-family:'Inter',sans-serif;color:#fff;
 }
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{
+  outline:2px solid #FFD166;outline-offset:4px;
+}
+[hidden]{display:none !important;}
 
 /* ─── CANVAS ─── */
 #c{position:fixed;inset:0;z-index:0;display:block;}
@@ -147,8 +151,9 @@ html,body{
   transition:all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
   box-shadow:0 10px 28px rgba(0,0,0,0.5);
   min-height:155px;
+  color:inherit;text-decoration:none;
 }
-.country-card:hover{
+.country-card:hover,.country-card:focus-visible{
   transform:translateY(-4px);
   border-color:rgba(255,209,102,0.55);
   background:rgba(18,20,30,0.92);
@@ -173,7 +178,7 @@ html,body{
   color:rgba(255,255,255,0.4);
   transition:transform 0.25s ease, color 0.25s ease;
 }
-.country-card:hover .cc-arrow{
+.country-card:hover .cc-arrow,.country-card:focus-visible .cc-arrow{
   color:#FFD166;
   transform:translateX(3px);
 }
@@ -194,7 +199,7 @@ html,body{
   gap:6px;
 }
 
-/* ─── TRUST METRICS STRIP ─── */
+/* ─── GUIDANCE STRIP ─── */
 .trust-strip{
   display:inline-flex;
   align-items:center;
@@ -230,7 +235,7 @@ html,body{
 /* ─── NAV ─── */
 #nav{
   position:fixed;top:0;left:0;right:0;z-index:200;
-  padding:0 40px;height:70px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 40px;height:70px;display:flex;align-items:center;justify-content:space-between;gap:24px;
   background:transparent;transition:background 0.4s, opacity 0.6s;
 }
 #nav.scrolled{
@@ -246,9 +251,14 @@ html,body{
 }
 .nav-logo span{color:#FFD166;}
 .nav-right{display:flex;align-items:center;gap:24px;}
+.nav-toggle{
+  display:none;align-items:center;justify-content:center;min-height:44px;padding:8px 16px;
+  border:1px solid rgba(255,209,102,0.45);border-radius:12px;background:rgba(8,9,13,0.8);
+  color:#fff;font:600 .85rem 'Inter',sans-serif;cursor:pointer;
+}
 .nav-link{
   color:rgba(255,255,255,0.7);font-size:0.82rem;font-weight:600;
-  letter-spacing:0.5px;text-decoration:none;transition:color 0.25s ease;
+  letter-spacing:0.5px;text-decoration:none;transition:color 0.25s ease;white-space:nowrap;
 }
 .nav-link:hover,.nav-link.active{color:#FFFFFF;}
 .nav-cta{
@@ -326,7 +336,7 @@ html,body{
 }
 #progress.show{opacity:1;}
 .pd{
-  width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.2);
+  width:6px;height:6px;padding:0;border:0;border-radius:50%;background:rgba(255,255,255,.2);
   transition:background .4s,transform .4s;cursor:pointer;
 }
 .pd.active{background:var(--pc,#7c5cff);transform:scale(1.5);}
@@ -336,9 +346,9 @@ html,body{
   position:fixed;bottom:0;left:0;right:0;z-index:200;
   padding:14px 32px;display:flex;align-items:center;justify-content:space-between;
   background:linear-gradient(to top,rgba(10,10,18,.9),transparent);
-  opacity:0;transition:opacity .6s;pointer-events:none;
+  opacity:0;visibility:hidden;transition:opacity .6s;pointer-events:none;
 }
-#bottom-bar.show{opacity:1;pointer-events:all;}
+#bottom-bar.show{opacity:1;visibility:visible;pointer-events:all;}
 .bb-left{font-size:.75rem;color:rgba(255,255,255,.35);letter-spacing:1px;}
 .bb-country{font-family:'Outfit',sans-serif;font-size:1.1rem;font-weight:800;color:var(--pc,#fff);}
 .bb-right{display:flex;gap:12px;}
@@ -373,13 +383,17 @@ html,body{
 .cta-back:hover{color:rgba(255,255,255,.7);}
 
 /* ─── SCROLLABLE GHOST (drives scroll detection) ─── */
+#scroll-depth{width:1px;height:500vh;pointer-events:none;}
 #scroll-ghost{position:fixed;inset:0;z-index:50;overflow-y:scroll;pointer-events:none;}
 #scroll-ghost-inner{height:600vh;width:1px;}
+body.static-home #scroll-depth,body.static-home #info-panel,body.static-home #progress{display:none;}
+body.static-home #intro{position:relative;inset:auto;min-height:100svh;padding:96px 24px 32px;pointer-events:auto;}
+.site-legal-footer{position:relative;z-index:100;}
 
 /* ─── MOBILE ─── */
 @media(max-width:600px){
-  #intro{justify-content:flex-start;width:100vw;max-width:100vw;padding:76px 16px 24px;overflow-x:hidden;overflow-y:auto;}
   .intro-title{width:100%;font-size:clamp(2.05rem,10vw,2.75rem);letter-spacing:0;}
+  .intro-badge{font-size:.6rem;letter-spacing:2px;padding:6px 12px;}
   .intro-sub{width:100%;max-width:calc(100vw - 32px);font-size:.9rem;line-height:1.55;margin-bottom:18px;}
   .track-btns{width:100%;max-width:calc(100vw - 40px);flex-direction:column;gap:10px;margin-bottom:26px;}
   .track-btn{width:100%;min-height:46px;padding:12px 14px;font-size:.76rem;white-space:normal;text-align:center;}
@@ -432,24 +446,28 @@ html,body{
 /* ─── WAITLIST MODAL ─── */
 #waitlist-modal {
   position:fixed;inset:0;z-index:9000;
-  display:flex;align-items:center;justify-content:center;
-  opacity:0;visibility:hidden;transition:all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  width:100%;max-width:none;height:100%;max-height:none;margin:0;padding:24px;
+  border:0;background:transparent;color:inherit;
+  display:none;align-items:center;justify-content:center;
 }
-#waitlist-modal:not(.hidden) { opacity:1;visibility:visible; }
+#waitlist-modal[open] { display:flex; }
+#waitlist-modal::backdrop { background:rgba(5,5,10,0.85);backdrop-filter:blur(12px); }
 .wm-backdrop {
-  position:absolute;inset:0;background:rgba(5,5,10,0.85);backdrop-filter:blur(12px);
+  position:absolute;inset:0;
 }
 .wm-content {
-  position:relative;z-index:1;width:90%;max-width:440px;
+  position:relative;z-index:1;width:100%;max-width:440px;
+  max-height:calc(100dvh - 48px);overflow-y:auto;
   background:rgba(20,20,30,0.6);backdrop-filter:blur(24px);
   border:1px solid rgba(255,255,255,0.1);border-radius:24px;
   padding:40px 32px;text-align:center;
   box-shadow:0 24px 64px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.1);
   transform:translateY(20px) scale(0.95);transition:all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-#waitlist-modal:not(.hidden) .wm-content { transform:translateY(0) scale(1); }
+#waitlist-modal[open] .wm-content { transform:translateY(0) scale(1); }
 .wm-close {
-  position:absolute;top:20px;right:20px;background:none;border:none;color:rgba(255,255,255,0.5);
+  position:absolute;top:12px;right:12px;z-index:2;min-width:44px;min-height:44px;
+  background:none;border:none;color:rgba(255,255,255,0.8);
   font-size:1.8rem;cursor:pointer;transition:color 0.2s;line-height:1;
 }
 .wm-close:hover { color:#fff; }
@@ -459,6 +477,7 @@ html,body{
 .wm-desc { font-size:.9rem;color:rgba(255,255,255,0.6);line-height:1.6;margin-bottom:32px; }
 
 .wm-form { display:flex;flex-direction:column;gap:12px; }
+.wm-form label { font-size:.85rem;font-weight:600;color:rgba(255,255,255,0.9);text-align:left; }
 .wm-form input, .wm-form select {
   width:100%;padding:14px 18px;border-radius:12px;border:1px solid rgba(255,255,255,0.15);
   background:rgba(0,0,0,0.4);color:#fff;font-family:'Inter',sans-serif;font-size:.95rem;
@@ -466,12 +485,12 @@ html,body{
 }
 .wm-form input::placeholder { color:rgba(255,255,255,0.3); }
 .wm-form input:focus, .wm-form select:focus {
-  outline:none;border-color:var(--pc,#9B7B1A);background:rgba(0,0,0,0.6);
+  border-color:#FFD166;background:rgba(0,0,0,0.6);
 }
 .wm-form select { appearance:none;cursor:pointer; }
 .wm-submit {
   width:100%;padding:14px;border-radius:12px;border:none;margin-top:8px;
-  background:linear-gradient(135deg,#9B7B1A,#FFD166);color:#fff;
+  background:linear-gradient(135deg,#9B7B1A,#FFD166);color:#08090D;
   font-weight:700;font-size:1rem;cursor:pointer;transition:transform 0.3s, box-shadow 0.3s;
   box-shadow:0 8px 20px rgba(155,123,26,0.25);
 }
@@ -479,15 +498,31 @@ html,body{
   transform:translateY(-2px);box-shadow:0 12px 28px rgba(124,92,255,0.4);
 }
 
-.wm-success { position:absolute;inset:0;background:rgba(20,20,30,0.98);border-radius:24px;display:flex;align-items:center;justify-content:center;flex-direction:column;padding:32px;opacity:1;transition:opacity 0.4s; }
-.wm-success.hidden { opacity:0;pointer-events:none; }
+.wm-success { background:rgba(20,20,30,0.98);border-radius:24px;display:flex;align-items:center;justify-content:center;flex-direction:column;padding:24px 0 0; }
+.wm-success.hidden { display:none; }
 .wm-error { margin-top:14px;color:#ffd6d6;font-size:.88rem;line-height:1.45; }
 .wm-error.hidden { display:none; }
 .wm-success-icon { font-size:3.5rem;margin-bottom:16px; }
-.wm-success h4 { font-family:'Outfit',sans-serif;font-size:1.8rem;margin-bottom:10px;color:#fff; }
+.wm-success h2 { font-family:'Outfit',sans-serif;font-size:1.8rem;margin-bottom:10px;color:#fff; }
 .wm-success p { color:rgba(255,255,255,0.6);font-size:.95rem;line-height:1.5; }
 
 /* ─── RESPONSIVE RULES ─── */
+@media(max-width:1024px) {
+  #nav { height:64px;padding:10px 20px;background:rgba(8,9,13,0.95); }
+  .nav-logo { font-size:1.2rem;letter-spacing:2.5px; }
+  .nav-toggle { display:inline-flex; }
+  .nav-right {
+    display:none;position:absolute;top:100%;left:0;right:0;
+    grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:12px 20px 18px;
+    max-height:calc(100dvh - 64px);overflow-y:auto;
+    background:rgba(8,9,13,0.98);border-bottom:1px solid rgba(255,209,102,0.2);
+  }
+  #nav.menu-open .nav-right { display:grid; }
+  .nav-link { display:flex;align-items:center;min-height:44px;padding:10px 12px;border-radius:10px; }
+  .nav-link:hover,.nav-link:focus-visible { background:rgba(255,255,255,0.06); }
+  .nav-cta { grid-column:1/-1;min-height:44px;text-align:center; }
+  #intro { padding-top:88px; }
+}
 @media(max-width:920px) {
   .country-cards { grid-template-columns: repeat(3, 1fr); gap: 10px; }
   .country-card { padding: 14px 14px 12px; }
@@ -495,33 +530,40 @@ html,body{
   .cc-desc { font-size: 0.76rem; line-height: 1.4; margin-bottom: 10px; }
 }
 @media(max-width:768px) {
-  #nav { padding: 12px 20px; height: auto; align-items: flex-start; flex-direction: column; gap: 12px; }
-  .nav-right { width: 100%; gap: 10px 14px; overflow-x: visible; padding-bottom: 4px; flex-wrap: wrap; }
-  .nav-link { white-space: nowrap; font-size: .75rem; }
-  .nav-cta { padding: 8px 16px; font-size: 0.78rem; }
-  .country-cards { grid-template-columns: 1fr; max-width: 420px; max-height: 44vh; overflow-y: auto; }
+  #scroll-depth { display:none; }
+  #intro {
+    position:relative;inset:auto;min-height:100svh;justify-content:flex-start;
+    padding:88px 16px 32px;pointer-events:auto;
+  }
+  #intro.hidden { opacity:1;visibility:visible;pointer-events:auto; }
+  .country-cards { grid-template-columns:1fr;max-width:420px;max-height:none;overflow:visible; }
   .country-card { min-height: auto; }
-  .trust-strip { flex-wrap: wrap; gap: 10px 16px; padding: 10px 16px; }
+  .trust-strip { flex-wrap:wrap;gap:10px 16px;padding:12px 16px;max-width:420px;border-radius:16px; }
   .ts-sep { display: none; }
+  #info-panel,#progress { display:none; }
   .wm-content { padding: 32px 20px; }
 }
-@media(max-height:760px) {
-  #intro { padding-top: 64px; }
+@media(max-height:760px) and (min-width:769px) {
+  #intro { padding-top:90px; }
   .intro-title { font-size: clamp(2rem, 4vw, 2.8rem); margin-bottom: 6px; }
   .intro-sub { margin-bottom: 14px; font-size: 0.88rem; }
   .country-cards { margin-bottom: 12px; }
   .country-card { padding: 14px 16px 12px; min-height: 130px; }
   .cc-desc { margin-bottom: 8px; font-size: 0.78rem; }
 }
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after { scroll-behavior:auto !important;animation:none !important;transition:none !important; }
+  #preloader { display:none; }
+}
 </style>
 </head>
-<body>
+<body id="top">
 
 <!-- CANVAS -->
-<canvas id="c"></canvas>
+<canvas id="c" aria-hidden="true"></canvas>
 
 <!-- SCROLL SPACER (Creates the scrollable depth) -->
-<div style="width:1px;height:500vh;pointer-events:none;"></div>
+<div id="scroll-depth" aria-hidden="true"></div>
 
 <!-- PRELOADER -->
 <div id="preloader">
@@ -530,83 +572,11 @@ html,body{
   <p class="pl-tip">Mapping your journey...</p>
 </div>
 
-<!-- INTRO: COUNTRY SELECT -->
-<div id="intro">
-  <div class="intro-badge">GLOBAL ENGINEERING ADVISORY</div>
-  <h1 class="intro-title">Direct Pathways to<br><span class="intro-grad">Global Engineering.</span></h1>
-  
-  <div class="country-cards">
-    <div class="country-card country-btn" data-c="germany" onclick="startCountryDive('germany', 'germany.html')">
-      <div class="cc-head">
-        <span class="cc-name">Germany</span>
-        <span class="cc-arrow">→</span>
-      </div>
-      <p class="cc-desc">TU9 public universities, DAAD scholarships, APS guidance, and Werkstudent industry placement in robotics and automation.</p>
-      <span class="cc-action">Explore Pathway</span>
-    </div>
-
-    <div class="country-card country-btn" data-c="japan" onclick="startJapanDive()">
-      <div class="cc-head">
-        <span class="cc-name">Japan</span>
-        <span class="cc-arrow">→</span>
-      </div>
-      <p class="cc-desc">MEXT full government scholarship, professor matching, English-taught Master's/PhD labs, and Japanese corporate hiring.</p>
-      <span class="cc-action">Explore Pathway</span>
-    </div>
-
-    <div class="country-card country-btn" data-c="korea" onclick="startCountryDive('korea', 'korea.html')">
-      <div class="cc-head">
-        <span class="cc-name">South Korea</span>
-        <span class="cc-arrow">→</span>
-      </div>
-      <p class="cc-desc">Global Korea Scholarship (GKS), full tuition waivers, monthly stipends, and research placement at leading national institutes.</p>
-      <span class="cc-action">Explore Pathway</span>
-    </div>
-  </div>
-
-  <div class="trust-strip">
-    <div class="ts-item"><strong class="count-up" data-target="300" data-suffix="+">300+</strong> Engineers Guided</div>
-    <span class="ts-sep"></span>
-    <div class="ts-item"><strong>₹<span class="count-up" data-target="50" data-suffix="M+">50M+</span></strong> Scholarships &amp; Grants</div>
-    <span class="ts-sep"></span>
-    <div class="ts-item"><strong class="count-up" data-target="100" data-suffix="%">100%</strong> Transparent Advisory</div>
-  </div>
-</div>
-
-<!-- WAITLIST MODAL -->
-<div id="waitlist-modal" class="hidden">
-  <div class="wm-backdrop" onclick="closeWaitlist()"></div>
-  <div class="wm-content">
-    <button class="wm-close" onclick="closeWaitlist()">×</button>
-    <div class="wm-icon" id="wm-icon">🚀</div>
-    <h3 class="wm-title">Join the <span id="wm-country" class="wm-grad">Germany</span> Waitlist</h3>
-    <p class="wm-desc">Be the first to access the interactive map and get a message-based roadmap note when we launch.</p>
-    
-    <form class="wm-form" id="wm-form" onsubmit="submitWaitlist(event)">
-      <input type="email" id="wm-email" placeholder="Enter your email address..." required>
-      <select id="wm-degree" required>
-        <option value="" disabled selected>Target Degree Level</option>
-        <option value="bachelors">Bachelors / Undergrad</option>
-        <option value="masters">Masters / Post-grad</option>
-        <option value="phd">PhD / Research</option>
-      </select>
-      <button type="submit" class="wm-submit">Get Early Access →</button>
-    </form>
-    <p class="wm-error hidden" id="wm-error" role="alert" aria-live="assertive"></p>
-    
-    <div class="wm-success hidden" id="wm-success">
-      <div class="wm-success-icon">✨</div>
-      <h4>You're on the list!</h4>
-      <p>We've saved your spot. We will email you the moment the map is ready for you to explore.</p>
-      <button class="wm-submit" style="margin-top:24px" onclick="closeWaitlist()">Back to World Map</button>
-    </div>
-  </div>
-</div>
-
 <!-- NAV -->
-<nav id="nav">
-  <div class="nav-logo" id="navLogo" onclick="window.scrollTo({top:0,behavior:'smooth'})">ARVENAIRE<span>.</span></div>
-  <div class="nav-right">
+<nav id="nav" aria-label="Main navigation">
+  <a href="#top" class="nav-logo" id="navLogo" aria-label="Arvenaire home">ARVENAIRE<span aria-hidden="true">.</span></a>
+  <button type="button" class="nav-toggle" id="nav-toggle" aria-controls="primary-navigation" aria-expanded="false">Menu</button>
+  <div class="nav-right" id="primary-navigation">
     <a href="germany.html" class="nav-link">Germany</a>
     <a href="japan.html" class="nav-link">Japan</a>
     <a href="korea.html" class="nav-link">South Korea</a>
@@ -615,6 +585,83 @@ html,body{
     <a href="contact.html" class="nav-cta">Contact Advisory</a>
   </div>
 </nav>
+
+<!-- INTRO: COUNTRY SELECT -->
+<div id="intro">
+  <div class="intro-badge">GLOBAL ENGINEERING ADVISORY</div>
+  <h1 class="intro-title">Direct Pathways to<br><span class="intro-grad">Global Engineering.</span></h1>
+  
+  <div class="country-cards">
+    <a href="germany.html" class="country-card country-btn" data-c="germany" aria-label="Explore Germany engineering pathway">
+      <div class="cc-head">
+        <span class="cc-name">Germany</span>
+        <span class="cc-arrow" aria-hidden="true">→</span>
+      </div>
+      <p class="cc-desc">Engineering study, DAAD scholarship resources, APS preparation, and Werkstudent application guidance for robotics and automation.</p>
+      <span class="cc-action">Explore Pathway</span>
+    </a>
+
+    <a href="japan.html" class="country-card country-btn" data-c="japan" aria-label="Explore Japan engineering pathway">
+      <div class="cc-head">
+        <span class="cc-name">Japan</span>
+        <span class="cc-arrow" aria-hidden="true">→</span>
+      </div>
+      <p class="cc-desc">MEXT research scholarship resources, professor outreach, and Master's/PhD application planning for engineering.</p>
+      <span class="cc-action">Explore Pathway</span>
+    </a>
+
+    <a href="korea.html" class="country-card country-btn" data-c="korea" aria-label="Explore South Korea engineering pathway">
+      <div class="cc-head">
+        <span class="cc-name">South Korea</span>
+        <span class="cc-arrow" aria-hidden="true">→</span>
+      </div>
+      <p class="cc-desc">GKS scholarship resources, graduate research options, and engineering application planning for South Korea.</p>
+      <span class="cc-action">Explore Pathway</span>
+    </a>
+  </div>
+
+  <div class="trust-strip">
+    <div class="ts-item"><strong>Engineering</strong> Pathways</div>
+    <span class="ts-sep" aria-hidden="true"></span>
+    <div class="ts-item"><strong>Application</strong> Resources</div>
+    <span class="ts-sep" aria-hidden="true"></span>
+    <div class="ts-item"><strong>Written</strong> Profile Review</div>
+  </div>
+</div>
+
+<!-- WAITLIST MODAL -->
+<dialog id="waitlist-modal" aria-labelledby="wm-title" aria-describedby="wm-description" aria-modal="true">
+  <div class="wm-backdrop" aria-hidden="true" onclick="closeWaitlist()"></div>
+  <div class="wm-content">
+    <button type="button" class="wm-close" aria-label="Close waitlist" onclick="closeWaitlist()">×</button>
+    <div id="wm-request">
+      <div class="wm-icon" id="wm-icon" aria-hidden="true">🚀</div>
+      <h2 class="wm-title" id="wm-title">Join the <span id="wm-country" class="wm-grad">Germany</span> Waitlist</h2>
+      <p class="wm-desc" id="wm-description">Be the first to access the interactive map and get a message-based roadmap note when we launch.</p>
+
+      <form class="wm-form" id="wm-form" onsubmit="submitWaitlist(event)">
+        <label for="wm-email">Email address</label>
+        <input type="email" id="wm-email" name="email" autocomplete="email" placeholder="you@example.com" required>
+        <label for="wm-degree">Target degree level</label>
+        <select id="wm-degree" name="degree_level" required>
+          <option value="" disabled selected>Target Degree Level</option>
+          <option value="bachelors">Bachelors / Undergrad</option>
+          <option value="masters">Masters / Post-grad</option>
+          <option value="phd">PhD / Research</option>
+        </select>
+        <button type="submit" class="wm-submit">Get Early Access →</button>
+      </form>
+      <p class="wm-error hidden" id="wm-error" role="alert" aria-live="assertive"></p>
+    </div>
+    
+    <div class="wm-success hidden" id="wm-success">
+      <div class="wm-success-icon" aria-hidden="true">✨</div>
+      <h2 id="wm-success-title" tabindex="-1">You're on the list!</h2>
+      <p id="wm-success-description">We've saved your spot. We will email you the moment the map is ready for you to explore.</p>
+      <button type="button" class="wm-submit" style="margin-top:24px" onclick="closeWaitlist()">Back to World Map</button>
+    </div>
+  </div>
+</dialog>
 
 <!-- INFO PANEL -->
 <div id="info-panel">
@@ -658,10 +705,95 @@ html,body{
 <!-- SCRIPTS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
+/* Navigation and form controls work independently of the decorative globe. */
+(function(){
+  const nav = document.getElementById('nav');
+  const toggle = document.getElementById('nav-toggle');
+  const compactNavigation = window.matchMedia('(max-width:1024px)');
+
+  function setMenu(open, restoreFocus = false) {
+    nav.classList.toggle('menu-open', open);
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.textContent = open ? 'Close menu' : 'Menu';
+    if (restoreFocus) toggle.focus();
+  }
+
+  toggle.addEventListener('click', () => setMenu(!nav.classList.contains('menu-open')));
+  nav.addEventListener('click', event => {
+    if (event.target.closest('a')) setMenu(false);
+  });
+  nav.addEventListener('focusout', event => {
+    if (!nav.contains(event.relatedTarget)) setMenu(false);
+  });
+  document.addEventListener('click', event => {
+    if (!nav.contains(event.target)) setMenu(false);
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && nav.classList.contains('menu-open')) {
+      event.preventDefault();
+      setMenu(false, true);
+    }
+  });
+  compactNavigation.addEventListener('change', () => setMenu(false));
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 16), { passive:true });
+
+  document.querySelectorAll('.country-card').forEach(link => {
+    link.addEventListener('click', event => {
+      if (event.defaultPrevented) return;
+      if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) {
+        event.stopPropagation();
+        return;
+      }
+      if (window.matchMedia('(prefers-reduced-motion:reduce)').matches) {
+        event.stopPropagation();
+        return;
+      }
+      if (typeof window.startCountryDive === 'function') {
+        event.preventDefault();
+        // Preserve the globe dive instead of the shared link transition's redirect.
+        event.stopPropagation();
+        window.startCountryDive(link.dataset.c, link.getAttribute('href'));
+      }
+    });
+  });
+
+  document.getElementById('waitlist-modal').addEventListener('cancel', event => {
+    event.preventDefault();
+    closeWaitlist();
+  });
+
+  // Dismiss the loader even if WebGL or the external globe library is unavailable.
+  const fill = document.getElementById('pl-fill');
+  const preloader = document.getElementById('preloader');
+  let width = 0;
+  setTimeout(() => preloader.classList.add('out'), 3500);
+  const interval = setInterval(() => {
+    width += 6 + Math.random() * 8;
+    if (width >= 100) {
+      width = 100;
+      clearInterval(interval);
+      setTimeout(() => preloader.classList.add('out'), 300);
+    }
+    fill.style.width = width + '%';
+  }, 70);
+})();
+
 /* Globe idle scene on index */
 (function(){
   const cv=document.getElementById('c');
-  const renderer=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:false});
+  if (!window.THREE || window.matchMedia('(prefers-reduced-motion:reduce)').matches) {
+    cv.hidden = true;
+    document.body.classList.add('static-home');
+    return;
+  }
+  let renderer;
+  try {
+    renderer = new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:false});
+  } catch (_) {
+    cv.hidden = true;
+    document.body.classList.add('static-home');
+    return;
+  }
   renderer.setPixelRatio(Math.min(devicePixelRatio,2));
   renderer.setSize(innerWidth,innerHeight);
   renderer.setClearColor(0x000000, 1); // Pure deep space black
@@ -893,9 +1025,9 @@ html,body{
   // Scroll Story Configuration
   const story = [
     { p: 0, rot: -1.2,  camZ: 28, showIntro: true, tag: '', title: '', body: '' },
-    { p: 0.25, rot: -2.3, camZ: 17, showIntro: false, tag: 'Step 1', title: 'Profile Evaluation', body: 'We rigorously analyze your academic background, research experience, and long-term career goals to find the absolute best-fit scholarship programs globally.', chips: ['📊 Complete Analysis', '🎯 Goal Alignment'] },
-    { p: 0.50, rot: -3.8, camZ: 16, showIntro: false, tag: 'Step 2', title: 'Smart Shortlisting', body: 'Stop guessing. We use historical data to precisely shortlist universities and professors where your profile has the highest statistical probability of acceptance.', chips: ['🏫 AI Matching', '📈 Highest ROI'] },
-    { p: 0.75, rot: -5.2, camZ: 17, showIntro: false, tag: 'Step 3', title: 'Application & Interview', body: 'Our experts guide you through drafting compelling Statements of Purpose, developing research proposals, and conducting high-pressure mock interviews.', chips: ['📝 Elite SOP Reviews', '🎤 Mock Interviews'] },
+    { p: 0.25, rot: -2.3, camZ: 17, showIntro: false, tag: 'Step 1', title: 'Profile Evaluation', body: 'Start with your academic background, engineering interests, and study or career goals to identify the next questions in your application plan.', chips: ['📊 Profile Context', '🎯 Goal Alignment'] },
+    { p: 0.50, rot: -3.8, camZ: 16, showIntro: false, tag: 'Step 2', title: 'Program Shortlisting', body: 'Compare programs and research groups using published requirements, engineering interests, and your application readiness.', chips: ['🏫 Program Research', '📝 Preparation Gaps'] },
+    { p: 0.75, rot: -5.2, camZ: 17, showIntro: false, tag: 'Step 3', title: 'Application Preparation', body: 'Use SOP templates, research-proposal resources, and interview preparation guidance to plan your next application steps.', chips: ['📝 SOP Resources', '🎯 Application Plan'] },
     { p: 1.0, rot: -7.48, camZ: 24, showIntro: true, tag: '', title: '', body: '' } // -7.48 = -1.2 - 2PI (A perfect 360 degree spin back to Japan!)
   ];
 
@@ -905,7 +1037,9 @@ html,body{
   // Render Progress Dots
   const progressContainer = document.getElementById('progress');
   story.forEach((s, idx) => {
-    const dot = document.createElement('div');
+    const dot = document.createElement('button');
+    dot.type = 'button';
+    dot.setAttribute('aria-label', s.title || (idx === 0 ? 'Show country pathways' : 'Return to country pathways'));
     dot.className = 'pd' + (idx === 0 ? ' active' : '');
     dot.onclick = () => window.scrollTo({ top: s.p * (document.body.scrollHeight - window.innerHeight), behavior: 'smooth' });
     progressContainer.appendChild(dot);
@@ -917,18 +1051,24 @@ html,body{
   let hoverRotX = null;
   
   document.querySelectorAll('.country-btn').forEach(btn => {
-    btn.addEventListener('mouseenter', () => {
+    const highlightCountry = () => {
        const cName = btn.getAttribute('data-c');
        const country = countries.find(x => x.name === cName);
        if(country) {
          hoverRotY = - (country.lon + 90) * (Math.PI / 180);
          hoverRotX = (country.lat) * (Math.PI / 180);
        }
-    });
-    btn.addEventListener('mouseleave', () => {
+    };
+    const clearHighlight = () => {
        hoverRotY = null;
        hoverRotX = null;
+    };
+    btn.addEventListener('mouseenter', highlightCountry);
+    btn.addEventListener('focus', highlightCountry);
+    btn.addEventListener('mouseleave', () => {
+      if (document.activeElement !== btn) clearHighlight();
     });
+    btn.addEventListener('blur', clearHighlight);
   });
 
   // ─── 3D GLOBE RAYCASTING & DRAGGING ───
@@ -1013,6 +1153,10 @@ html,body{
 
   // Handle Scroll Progress
   window.addEventListener('scroll', () => {
+    if (window.matchMedia('(max-width:768px)').matches) {
+      document.getElementById('intro').classList.remove('hidden');
+      return;
+    }
     let p = window.scrollY / (document.body.scrollHeight - window.innerHeight);
     p = Math.max(0, Math.min(1, p));
 
@@ -1201,24 +1345,11 @@ html,body{
     camera.updateProjectionMatrix();
   });
   
-  // Preloader
-  const fill=document.getElementById('pl-fill');
-  const preloader=document.getElementById('preloader');
-  let w=0;
-  setTimeout(()=>preloader?.classList.add('out'),3500);
-  const iv=setInterval(()=>{
-    w+=6+Math.random()*8;
-    if(w>=100){w=100;clearInterval(iv);
-      setTimeout(()=>preloader?.classList.add('out'),300);
-    }
-    if(fill) fill.style.width=w+'%';
-  },70);
-
   // Hook up dive functions to the global window object from INSIDE the closure
   window.startCountryDive = function(countryName, targetUrl) {
     if (window.isDiving) return;
     const targetData = window.countryDots ? window.countryDots[countryName] : null;
-    if (!targetData) {
+    if (!targetData || window.matchMedia('(prefers-reduced-motion:reduce)').matches) {
       window.location.href = targetUrl;
       return;
     }
@@ -1247,6 +1378,7 @@ html,body{
     // 4. Trigger the cinematic fade-to-black at 2.8 seconds. 
     setTimeout(() => {
       const fade = document.createElement('div');
+      fade.id = 'country-dive-fade';
       fade.style.position = 'fixed';
       fade.style.inset = '0';
       fade.style.background = '#000';
@@ -1269,6 +1401,18 @@ html,body{
   window.startJapanDive = function() {
     window.startCountryDive('japan', 'japan.html');
   };
+
+  window.addEventListener('pageshow', event => {
+    if (!event.persisted) return;
+    window.isDiving = false;
+    document.getElementById('intro').style.opacity = '';
+    document.getElementById('intro').style.pointerEvents = '';
+    document.getElementById('nav').style.opacity = '';
+    document.getElementById('country-dive-fade')?.remove();
+    Object.values(window.countryDots).forEach(country => country.mesh.visible = true);
+    camera.fov = 55;
+    camera.updateProjectionMatrix();
+  });
 })();
 
 function showSoon(flag, name){
@@ -1277,13 +1421,33 @@ function showSoon(flag, name){
   window.location.href = 'contact.html?topic=' + topic + '&message=' + message;
 }
 
+let waitlistReturnFocus = null;
+
+function openWaitlist(countryName = 'Germany', icon = '🚀') {
+  const modal = document.getElementById('waitlist-modal');
+  if (modal.open) return;
+  waitlistReturnFocus = document.activeElement;
+  document.getElementById('wm-country').textContent = countryName;
+  document.getElementById('wm-icon').textContent = icon;
+  modal.showModal();
+  document.getElementById('wm-email').focus();
+}
+
 function closeWaitlist(){
-  document.getElementById('waitlist-modal').classList.add('hidden');
+  const modal = document.getElementById('waitlist-modal');
+  if (modal.open) modal.close();
+  modal.setAttribute('aria-labelledby', 'wm-title');
+  modal.setAttribute('aria-describedby', 'wm-description');
   document.getElementById('wm-success').classList.add('hidden');
+  document.getElementById('wm-request').hidden = false;
   const errorEl = document.getElementById('wm-error');
   errorEl.classList.add('hidden');
   errorEl.textContent = '';
   document.getElementById('wm-form').reset();
+  if (waitlistReturnFocus instanceof HTMLElement && waitlistReturnFocus.isConnected) {
+    waitlistReturnFocus.focus();
+  }
+  waitlistReturnFocus = null;
 }
 
 async function submitWaitlist(e){
@@ -1326,7 +1490,12 @@ async function submitWaitlist(e){
       throw new Error(result.message || 'The waitlist request could not be confirmed.');
     }
 
+    document.getElementById('wm-request').hidden = true;
     document.getElementById('wm-success').classList.remove('hidden');
+    const modal = document.getElementById('waitlist-modal');
+    modal.setAttribute('aria-labelledby', 'wm-success-title');
+    modal.setAttribute('aria-describedby', 'wm-success-description');
+    document.getElementById('wm-success-title').focus();
     form.reset();
   } catch(err) {
     console.error('Waitlist request error:', err);
@@ -1338,33 +1507,6 @@ async function submitWaitlist(e){
   }
 }
 
-/* ─── Animated Count-Up ─── */
-(function(){
-  function animateCount(el) {
-    const target = parseInt(el.dataset.target);
-    const suffix = el.dataset.suffix || '';
-    const duration = 1800;
-    const step = target > 200 ? Math.ceil(target / 60) : 1;
-    let current = 0;
-    const interval = setInterval(() => {
-      current += step;
-      if (current >= target) {
-        current = target;
-        clearInterval(interval);
-      }
-      el.textContent = current.toLocaleString() + suffix;
-    }, duration / (target / step));
-  }
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        animateCount(e.target);
-        obs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.5 });
-  document.querySelectorAll('.count-up').forEach(el => obs.observe(el));
-})();
 </script>
 <footer class="site-legal-footer">
   <div class="legal-nav">
